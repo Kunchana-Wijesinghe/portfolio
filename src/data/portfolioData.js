@@ -3,10 +3,11 @@ export const personalInfo = {
   firstName: 'Kunchana',
   lastName: 'Wijesinghe',
   initials: 'KW',
-  role: 'Computer Science Undergraduate',
+  role: '3rd Year Computer Science Undergraduate',
   tagline: 'Aspiring Software Engineer & Full-Stack Developer',
   university: 'Sri Lanka Institute of Information Technology (SLIIT)',
   degree: 'BSc (Hons) in Computer Science',
+  academicLevel: 'Year 3, Semester 1',
   location: 'Galle, Sri Lanka',
   email: 'kunchanawijesinghe29230@gmail.com',
   phone: '+94 70 272 5762',
@@ -15,9 +16,9 @@ export const personalInfo = {
   githubUsername: 'Kunchana-Wijesinghe',
   linkedin: 'https://linkedin.com/in/kunchana-wijesinghe',
   linkedinUsername: 'kunchana-wijesinghe',
-  status: 'Open to Software Engineering & Full-Stack Internships',
+  status: '3rd Year CS Undergrad (Y3S1) • Open to Software Internships',
   summary:
-    'Motivated and enthusiastic Computer Science undergraduate at Sri Lanka Institute of Information Technology (SLIIT) with hands-on experience architecturalizing academic full-stack applications. Deeply skilled in Java programming, clean software engineering paradigms, and structural database development. Possesses robust team collaboration, communication, and leadership capabilities honed through continuous management of university modules and institutional extracurricular boards. Highly passionate about implementing modern software systems, learning advanced tools, and delivering high-quality industry engineering frameworks.',
+    'Motivated and enthusiastic 3rd Year Computer Science undergraduate at Sri Lanka Institute of Information Technology (SLIIT), currently in Year 3 Semester 1. Possesses comprehensive theoretical and applied training across Advanced Software Engineering, Parallel Computing, Intelligent Systems, Distributed Systems, Algorithms, and Relational Database Management. Experienced in architecting full-stack applications and distributed transaction systems, with robust leadership, communication, and analytical problem-solving capabilities.',
 }
 
 export const skillsData = {
@@ -36,12 +37,14 @@ export const skillsData = {
     { name: 'IntelliJ IDEA', category: 'IDE', icon: '💡' },
   ],
   competencies: [
-    'Object-Oriented Architecture',
-    'Data Structures & Algorithms',
-    'Relational DB Design',
-    'SDLC Models & Agile',
-    'Distributed Processing',
-    'Software Testing & QA',
+    'Parallel & Distributed Computing',
+    'Advanced Software Engineering & OOAD',
+    'Intelligent Systems & AI Foundations',
+    'Design & Analysis of Algorithms',
+    'Database Management Systems (DBMS)',
+    'Operating Systems & Computer Networks',
+    'Graphics, Visualization & HCI',
+    'SDLC Models & Software Testing',
   ],
   softSkills: [
     'Team Sync & Agile Collaboration',
@@ -67,7 +70,7 @@ export const projectsData = [
     featured: true,
     status: 'Completed',
     technologies: ['Java', 'MySQL', 'OOP Principles', 'Database Design'],
-    github: 'https://github.com/Kunchana-Wijesinghe/UniStay_Boarding_Management_System',
+    github: 'https://github.com/Kunchana-Wijesinghe',
     description:
       'Engineered a centralized management portal to optimize student boarding, pricing parameters, and rental accommodation metrics. Built end-to-end user workflows, incorporating full tenant registration frameworks, modular room allocation routines, and record updates. Applied sound object-oriented logic and complex backend design patterns to reinforce architecture safety.',
     highlights: [
@@ -86,7 +89,7 @@ export const projectsData = [
     featured: true,
     status: 'Completed',
     technologies: ['Java', 'Git & GitHub', 'Distributed Systems', 'Software Engineering'],
-    github: 'https://github.com/DahamKu101/Distributed-Payment-System-Group-18',
+    github: 'https://github.com/Kunchana-Wijesinghe',
     description:
       'Collaborated in an agile engineering tier to conceptualize and deploy an active, failure-tolerant distributed transaction system. Configured message safety layers, interface components, and cross-node validation pipelines to handle atomic payments securely. Managed concurrent feature integration, branch structural changes, and code reviews within centralized Git protocols.',
     highlights: [
@@ -105,7 +108,7 @@ export const projectsData = [
     featured: false,
     status: 'Completed',
     technologies: ['Java', 'MySQL', 'SDLC', 'System Analysis', 'Software Testing'],
-    github: 'https://github.com/Kunchana-Wijesinghe/Salon-Sanaru-SE-Group-11',
+    github: 'https://github.com/Kunchana-Wijesinghe',
     description:
       'Architected a commercial operations portal targeting automated client bookings, service allocation tracking, and digital user logging. Drove modules through the entire Software Development Life Cycle (SDLC) from specification mining to design testing.',
     highlights: [
@@ -131,7 +134,7 @@ export const educationData = [
     highlights: [
       'Primary & Secondary Education — Grade 1 to 13',
       'Physical Science Stream (A/L)',
-      'Active leadership in Student Prefect Board, IT Club, Senior Western Band, and Scouts',
+      'Active leadership in Student Prefect Board (7 Yrs), IT Club (5 Yrs), Senior Western Band (3 Yrs), and Scouts',
     ],
     olSubjects: [
       'Mathematics',
@@ -146,16 +149,54 @@ export const educationData = [
   {
     id: 'sliit',
     period: '2024 — Present',
+    currentStage: 'Year 3, Semester 1',
     institution: 'Sri Lanka Institute of Information Technology (SLIIT)',
     degree: 'BSc (Hons) in Computer Science',
     location: 'Malabe, Sri Lanka',
-    status: 'In Progress (Undergraduate)',
+    status: 'Undergraduate (Year 3, Semester 1)',
     description:
-      'Pursuing an honors degree in Computer Science, focusing on Software Engineering, Data Structures, Object-Oriented Architecture, System Design, and Modern Application Development.',
-    highlights: [
-      'Hands-on full-stack development & academic engineering projects',
-      'Solid foundations in algorithms, OOP principles, and database management',
-      'Collaborative team projects and agile practices',
+      'Pursuing an honors degree in Computer Science at SLIIT. Coursework up to Year 3 Semester 1 provides strong analytical, architectural, and applied engineering foundations across key computing domains.',
+    coveredDomains: [
+      {
+        field: 'Software Architecture & OOAD',
+        description: 'Advanced Software Engineering, Object-Oriented Analysis & Design, and Design Patterns',
+        icon: '🏛️',
+      },
+      {
+        field: 'Graphics & Visualization',
+        description: 'Computer Graphics & Visualization, 2D/3D Rendering, Visual Computing & HCI',
+        icon: '🎨',
+      },
+      {
+        field: 'Parallel & Distributed Computing',
+        description: 'Parallel Computing, Distributed Systems, Concurrency, and High-Performance Architecture',
+        icon: '⚡',
+      },
+      {
+        field: 'Intelligent Systems & AI',
+        description: 'Intelligent Systems, AI Heuristics, Problem Solving, and Computational Modeling',
+        icon: '🤖',
+      },
+      {
+        field: 'Algorithms & Data Structures',
+        description: 'Design & Analysis of Algorithms, Advanced Data Structures, and Computational Efficiency',
+        icon: '📐',
+      },
+      {
+        field: 'Database Architecture & DBMS',
+        description: 'Relational Database Design, SQL Query Optimization, Normalization, and Integrity',
+        icon: '💾',
+      },
+      {
+        field: 'Operating Systems & Networks',
+        description: 'Operating Systems Internals, Computer Networks Protocols, and System Architecture',
+        icon: '🌐',
+      },
+      {
+        field: 'Software Projects & SDLC',
+        description: 'Applied Case Study Projects, Agile Engineering Practices, and Professional Skills',
+        icon: '🚀',
+      },
     ],
   },
 ]

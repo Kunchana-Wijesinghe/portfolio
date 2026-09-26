@@ -1,89 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: 'Onest', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --color-dark-bg: #090d16;
-  --color-dark-card: #0f172a;
-  --color-dark-border: #1e293b;
+  --color-ocean-bg: #071d2d;
+  --color-ocean-deep: #051521;
+  --color-ocean-card: #0b202d;
+  --color-accent-cyan: #66d8ee;
+  --color-accent-green: #49e3a1;
+  --color-accent-violet: #aa75ff;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #090d16;
-    color: #f1f5f9;
-    font-family: var(--font-sans);
+    background-color: #071d2d;
+    color: #ffffff;
+    font-family: 'Onest', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    background-color: #090d16;
-    color: #f1f5f9;
-    font-family: var(--font-sans);
+    background-color: #071d2d;
+    color: #ffffff;
+    font-family: 'Onest', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #06b6d4;
-    color: #000000;
+    background-color: #66d8ee;
+    color: #071d2d;
   }
 }
 
 /* Custom modern scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #071d2d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #14354a;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #1f4f6e;
 }
 
-/* Glow effects and grid backgrounds */
-.bg-grid-pattern {
-  background-size: 36px 36px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-}
-
-/* Glassmorphism card utility */
-.glass-card {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Oceanic Glass Cards */
+.ocean-glass {
+  background: rgba(11, 32, 45, 0.65);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card:hover {
-  border-color: rgba(6, 182, 212, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.15);
-  transform: translateY(-2px);
+.ocean-glass:hover {
+  border-color: rgba(102, 216, 238, 0.35);
+  box-shadow: 0 16px 40px -10px rgba(0, 7, 14, 0.5), 0 0 20px -5px rgba(102, 216, 238, 0.12);
 }
 
-/* Subtle badge shine animation */
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
+/* Floating Glass Nav (Apple-style) */
+.floating-glass-nav {
+  background: rgba(7, 29, 45, 0.82);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 36px rgba(0, 7, 14, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-.animate-shine {
-  animation: shine 3s infinite;
+/* Ambient Breathing Glow Orbs */
+@keyframes orbBreathe {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+  50% { transform: scale(1.08) translate(12px, -10px); opacity: 0.45; }
+  100% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+}
+
+.animate-orb {
+  animation: orbBreathe 10s ease-in-out infinite;
+}
+
+/* Section Watermark Headings */
+.section-watermark {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(4rem, 14vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
 }

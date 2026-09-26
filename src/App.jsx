@@ -19,11 +19,11 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen bg-[#071d2d] text-slate-100 flex flex-col selection:bg-[#66d8ee] selection:text-slate-950 font-sans">
       {/* Skip to content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan-500 focus:text-black focus:font-mono focus:text-xs uppercase tracking-wider rounded-lg font-bold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#66d8ee] focus:text-slate-950 focus:font-mono focus:text-xs uppercase tracking-wider rounded-xl font-bold"
       >
         Skip to main content
       </a>
