@@ -16,6 +16,9 @@ export const personalInfo = {
   githubUsername: 'Kunchana-Wijesinghe',
   linkedin: 'https://linkedin.com/in/kunchana-wijesinghe',
   linkedinUsername: 'kunchana-wijesinghe',
+  whatsapp: 'https://wa.me/qr/OXBEYFRF4ONKM1',
+  facebook: 'https://www.facebook.com/kunchana.wijesinghe?mibextid=ZbWKwL',
+  instagram: 'https://www.instagram.com/kunchana_wijesinghe?stkn=MW1vZ3gxZDhiY2NkYQ==',
   status: '3rd Year CS Undergrad (Y3S1) • Open to Software Internships',
   summary:
     'Motivated and enthusiastic 3rd Year Computer Science undergraduate at Sri Lanka Institute of Information Technology (SLIIT), currently in Year 3 Semester 1. Possesses comprehensive theoretical and applied training across Advanced Software Engineering, Parallel Computing, Intelligent Systems, Distributed Systems, Algorithms, and Relational Database Management. Experienced in architecting full-stack applications and distributed transaction systems, with robust leadership, communication, and analytical problem-solving capabilities.',
