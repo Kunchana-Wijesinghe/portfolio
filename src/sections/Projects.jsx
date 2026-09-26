@@ -1,13 +1,41 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { projectsData } from '../data/portfolioData'
 
 export default function Projects() {
   const [filter, setFilter] = useState('all')
+  const [activeModalProject, setActiveModalProject] = useState(null)
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveModalProject(null)
+      }
+    }
+    if (activeModalProject) {
+      document.body.style.overflow = 'hidden'
+      window.addEventListener('keydown', handleKeyDown)
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [activeModalProject])
 
   const filteredProjects = projectsData.filter((project) => {
     if (filter === 'all') return true
-    if (filter === 'featured') return project.featured
-    if (filter === 'distributed') return project.technologies.includes('Distributed Systems')
+    if (filter === 'cloud') {
+      return (
+        project.technologies.includes('Docker') ||
+        project.technologies.includes('Azure Container Apps') ||
+        project.technologies.includes('Spring Boot')
+      )
+    }
+    if (filter === 'distributed') {
+      return project.technologies.includes('Distributed Systems')
+    }
     return true
   })
 
@@ -25,10 +53,10 @@ export default function Projects() {
               <span>03 // CODE &amp; ARCHITECTURE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Featured <span className="bg-gradient-to-r from-[#66d8ee] via-[#49e3a1] to-[#aa75ff] bg-clip-text text-transparent">Engineering Projects</span>
+              Academic <span className="bg-gradient-to-r from-[#66d8ee] via-[#49e3a1] to-[#aa75ff] bg-clip-text text-transparent">Team Projects</span>
             </h2>
-            <p className="mt-2 text-slate-300 text-sm sm:text-base max-w-xl">
-              Academic software implementations showcasing object-oriented paradigms, distributed consensus, and relational database systems.
+            <p className="mt-2 text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+              University engineering team projects demonstrating full-stack web platforms, cloud-deployed microservices, and failure-tolerant distributed systems.
             </p>
           </div>
 
@@ -42,19 +70,21 @@ export default function Projects() {
                   ? 'bg-gradient-to-r from-[#66d8ee] to-[#49e3a1] text-[#071d2d] shadow-sm'
                   : 'text-slate-300 hover:text-white'
               }`}
+              aria-pressed={filter === 'all'}
             >
               All ({projectsData.length})
             </button>
             <button
-              onClick={() => setFilter('featured')}
+              onClick={() => setFilter('cloud')}
               type="button"
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                filter === 'featured'
+                filter === 'cloud'
                   ? 'bg-gradient-to-r from-[#66d8ee] to-[#49e3a1] text-[#071d2d] shadow-sm'
                   : 'text-slate-300 hover:text-white'
               }`}
+              aria-pressed={filter === 'cloud'}
             >
-              Featured
+              Web &amp; Cloud
             </button>
             <button
               onClick={() => setFilter('distributed')}
@@ -64,6 +94,7 @@ export default function Projects() {
                   ? 'bg-gradient-to-r from-[#66d8ee] to-[#49e3a1] text-[#071d2d] shadow-sm'
                   : 'text-slate-300 hover:text-white'
               }`}
+              aria-pressed={filter === 'distributed'}
             >
               Distributed
             </button>
@@ -71,21 +102,21 @@ export default function Projects() {
         </div>
 
         {/* Projects List */}
-        <div className="space-y-6">
+        <div className="space-y-8">
           {filteredProjects.map((project) => (
             <article
               key={project.id}
-              className="ocean-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden group hover:border-[#66d8ee]/40 transition-all"
+              className="ocean-glass rounded-3xl p-6 sm:p-8 lg:p-10 relative overflow-hidden group hover:border-[#66d8ee]/40 transition-all"
             >
               {/* Top Meta Line */}
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4 mb-5">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4 mb-6">
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-sm font-bold text-[#66d8ee]">
                     #{project.number}
                   </span>
                   <span className="text-white/20">|</span>
-                  <span className="font-mono text-xs text-slate-300 uppercase tracking-wider">
-                    {project.badge}
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200 font-mono text-xs uppercase tracking-wider font-medium">
+                    👥 {project.badge}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -98,7 +129,7 @@ export default function Projects() {
 
               {/* Title & Subtitle */}
               <div className="mb-4">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-[#66d8ee] transition-colors">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-[#66d8ee] transition-colors tracking-tight">
                   {project.title}
                 </h3>
                 <p className="font-mono text-xs sm:text-sm text-[#49e3a1] mt-1 font-medium">
@@ -106,64 +137,243 @@ export default function Projects() {
                 </p>
               </div>
 
-              {/* Description */}
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-5">
-                {project.description}
+              {/* Short Overview (Card Description) */}
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                {project.cardDescription}
               </p>
 
-              {/* Highlights Bullet List */}
-              <div className="mb-5 space-y-2">
+              {/* Key Features */}
+              <div className="mb-6 space-y-2">
                 <span className="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold block">
-                  Implementation Highlights:
+                  Key Features:
                 </span>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {project.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-300">
-                      <span className="text-[#49e3a1] font-bold mt-0.5">✓</span>
-                      <span>{h}</span>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                  {project.keyFeatures.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                      <span className="text-[#49e3a1] font-bold mt-0.5 shrink-0">✓</span>
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
+              {/* My Contribution (where known) */}
+              {project.myContribution && (
+                <div className="mb-6 p-4 rounded-2xl bg-[#051521]/75 border border-[#66d8ee]/25 relative">
+                  <div className="flex items-center gap-2 mb-1.5 font-mono text-xs font-semibold text-[#66d8ee] uppercase tracking-wider">
+                    <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span>My Documented Contribution:</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {project.myContribution}
+                  </p>
+                </div>
+              )}
+
               {/* Technologies Pills */}
-              <div className="mb-6 flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 rounded-full bg-[#051521]/70 border border-white/10 text-xs font-mono text-slate-200"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div className="mb-6">
+                <span className="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold block mb-2.5">
+                  Technologies:
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 rounded-full bg-[#051521]/80 border border-white/10 text-xs font-mono text-slate-200 transition-colors hover:border-[#66d8ee]/40"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              {/* Bottom Footer Bar */}
-              <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-2 font-mono text-xs text-slate-300">
+              {/* Bottom Footer Bar with Architecture Spec & Actions */}
+              <div className="pt-5 border-t border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div className="flex items-center gap-2 font-mono text-xs text-slate-300 flex-wrap">
                   <span className="text-[#66d8ee] font-semibold">ARCH:</span>
-                  <span className="bg-[#051521]/60 px-2.5 py-1 rounded-lg border border-white/10">
+                  <span className="bg-[#051521]/60 px-2.5 py-1 rounded-lg border border-white/10 text-[11px] sm:text-xs">
                     {project.architecture}
                   </span>
                 </div>
 
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#66d8ee] to-[#49e3a1] text-[#071d2d] font-bold text-xs font-mono hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md self-start sm:self-auto cursor-pointer"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                  </svg>
-                  <span>View on GitHub ↗</span>
-                </a>
+                <div className="flex items-center gap-3 self-start lg:self-auto flex-wrap">
+                  {/* View Details Modal Trigger */}
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalProject(project)}
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 hover:border-[#66d8ee]/50 text-white font-mono text-xs font-semibold transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#66d8ee]"
+                  >
+                    <svg className="w-3.5 h-3.5 text-[#66d8ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>View Project Details</span>
+                  </button>
+
+                  {/* GitHub Repo Button */}
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#66d8ee] to-[#49e3a1] text-[#071d2d] font-bold text-xs font-mono hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#66d8ee]"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                    <span>GitHub ↗</span>
+                  </a>
+                </div>
               </div>
             </article>
           ))}
         </div>
 
       </div>
+
+      {/* Accessible Project Details Modal */}
+      {activeModalProject && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-project-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+        >
+          {/* Backdrop */}
+          <div
+            onClick={() => setActiveModalProject(null)}
+            className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
+            aria-hidden="true"
+          />
+
+          {/* Modal Container */}
+          <div className="relative w-full max-w-3xl ocean-glass rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#66d8ee]/30 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4 mb-6">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="font-mono text-xs font-bold text-[#66d8ee]">
+                    PROJECT #{activeModalProject.number}
+                  </span>
+                  <span className="text-white/20">|</span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-200 font-mono text-xs uppercase tracking-wider">
+                    👥 {activeModalProject.badge}
+                  </span>
+                </div>
+                <h3 id="modal-project-title" className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  {activeModalProject.title}
+                </h3>
+                <p className="font-mono text-xs sm:text-sm text-[#49e3a1] mt-1 font-medium">
+                  {activeModalProject.subtitle}
+                </p>
+              </div>
+
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setActiveModalProject(null)}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all cursor-pointer shrink-0 focus:outline-none focus:ring-2 focus:ring-[#66d8ee]"
+                aria-label="Close project details"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="space-y-6">
+              {/* Detailed Description */}
+              <div>
+                <h4 className="text-xs font-mono uppercase text-[#66d8ee] tracking-wider font-semibold mb-2">
+                  Detailed Project Overview:
+                </h4>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  {activeModalProject.detailedDescription}
+                </p>
+              </div>
+
+              {/* Key Features */}
+              <div>
+                <h4 className="text-xs font-mono uppercase text-[#66d8ee] tracking-wider font-semibold mb-2.5">
+                  Key Features &amp; System Capabilities:
+                </h4>
+                <ul className="space-y-2">
+                  {activeModalProject.keyFeatures.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                      <span className="text-[#49e3a1] font-bold mt-0.5 shrink-0">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* My Contribution (if present) */}
+              {activeModalProject.myContribution && (
+                <div className="p-4 rounded-2xl bg-[#051521]/80 border border-[#66d8ee]/30">
+                  <h4 className="flex items-center gap-2 text-xs font-mono uppercase text-[#66d8ee] tracking-wider font-semibold mb-2">
+                    <svg className="w-4 h-4 text-[#66d8ee] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span>My Documented Individual Contribution:</span>
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {activeModalProject.myContribution}
+                  </p>
+                </div>
+              )}
+
+              {/* Technology Stack */}
+              <div>
+                <h4 className="text-xs font-mono uppercase text-[#66d8ee] tracking-wider font-semibold mb-2.5">
+                  Full Technology Stack:
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {activeModalProject.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1.5 rounded-full bg-[#051521] border border-white/10 text-xs font-mono text-slate-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Team Project Attribution Disclaimer */}
+              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-400">
+                <span className="text-[#66d8ee] font-semibold">ACADEMIC TEAM PROJECT: </span>
+                <span>
+                  Developed as a university collaborative engineering project. Individual responsibilities and integration workflows are highlighted above where documented.
+                </span>
+              </div>
+            </div>
+
+            {/* Modal Footer Actions */}
+            <div className="mt-8 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <button
+                type="button"
+                onClick={() => setActiveModalProject(null)}
+                className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-slate-300 hover:text-white font-mono text-xs font-semibold transition-all cursor-pointer"
+              >
+                Close
+              </button>
+
+              <a
+                href={activeModalProject.github}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#66d8ee] to-[#49e3a1] text-[#071d2d] font-bold text-xs font-mono hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md cursor-pointer"
+              >
+                <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                </svg>
+                <span>View on GitHub ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
