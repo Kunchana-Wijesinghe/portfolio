@@ -11,25 +11,14 @@ export default function Contact() {
   }
 
   return (
-    <footer id="contact" className="py-24 sm:py-32 relative bg-[#05131e] border-t border-white/10 overflow-hidden">
-      {/* Background Huge Watermark */}
-      <div 
-        className="absolute top-1/2 left-0 -translate-y-1/2 pointer-events-none select-none text-white/[0.025] font-black text-[18vw] leading-none tracking-tighter whitespace-nowrap z-0 font-heading"
-        aria-hidden="true"
-      >
-        CONTACT
-      </div>
+    <footer id="contact" className="py-24 sm:py-32 relative bg-[#071d2d] border-t border-white/10 overflow-hidden">
+      {/* Background Watermark */}
+      <div className="section-watermark">CONTACT</div>
 
-      {/* Subtle Constellation / Grid Mesh Background */}
-      <div className="absolute inset-0 pointer-events-none opacity-25 z-0" aria-hidden="true">
-        <svg className="w-full h-full text-[#49e3a1]/20" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="oceanGlow" cx="70%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#49e3a1" stopOpacity="0.18" />
-              <stop offset="100%" stopColor="#05131e" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#oceanGlow)" />
+      {/* Subtle Constellation / Ambient Glow Background */}
+      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-[#49e3a1]/10 via-[#66d8ee]/8 to-[#aa75ff]/8 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute inset-0 pointer-events-none opacity-20 z-0" aria-hidden="true">
+        <svg className="w-full h-full text-[#49e3a1]/25" xmlns="http://www.w3.org/2000/svg">
           {/* Subtle network constellation lines */}
           <line x1="10%" y1="20%" x2="40%" y2="50%" stroke="currentColor" strokeWidth="0.75" strokeDasharray="3 6" />
           <line x1="40%" y1="50%" x2="80%" y2="30%" stroke="currentColor" strokeWidth="0.75" strokeDasharray="3 6" />
@@ -80,7 +69,7 @@ export default function Contact() {
               <div>
                 <a
                   href={`mailto:${personalInfo.email}?subject=Software%20Engineering%20Opportunity%20/%20Collaboration`}
-                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-[#05131e] font-bold text-sm hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-[#071d2d] font-bold text-sm hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg cursor-pointer"
                 >
                   <span>Start a conversation</span>
                   <span className="text-base font-bold">↗</span>
