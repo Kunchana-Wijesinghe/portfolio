@@ -1,4 +1,4 @@
-import { personalInfo, skillsData } from '../data/portfolioData'
+import { skillsData } from '../data/portfolioData'
 
 export default function About() {
   return (

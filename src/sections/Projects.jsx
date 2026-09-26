@@ -69,7 +69,7 @@ export default function Projects() {
 
         {/* Projects List / Grid */}
         <div className="space-y-8">
-          {filteredProjects.map((project, index) => (
+          {filteredProjects.map((project) => (
             <article
               key={project.id}
               className="glass-card rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden group"
