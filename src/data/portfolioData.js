@@ -67,7 +67,7 @@ export const projectsData = [
     featured: true,
     status: 'Completed',
     technologies: ['Java', 'MySQL', 'OOP Principles', 'Database Design'],
-    github: 'https://github.com/Kunchana-Wijesinghe',
+    github: 'https://github.com/Kunchana-Wijesinghe/UniStay_Boarding_Management_System',
     description:
       'Engineered a centralized management portal to optimize student boarding, pricing parameters, and rental accommodation metrics. Built end-to-end user workflows, incorporating full tenant registration frameworks, modular room allocation routines, and record updates. Applied sound object-oriented logic and complex backend design patterns to reinforce architecture safety.',
     highlights: [
@@ -86,7 +86,7 @@ export const projectsData = [
     featured: true,
     status: 'Completed',
     technologies: ['Java', 'Git & GitHub', 'Distributed Systems', 'Software Engineering'],
-    github: 'https://github.com/Kunchana-Wijesinghe',
+    github: 'https://github.com/DahamKu101/Distributed-Payment-System-Group-18',
     description:
       'Collaborated in an agile engineering tier to conceptualize and deploy an active, failure-tolerant distributed transaction system. Configured message safety layers, interface components, and cross-node validation pipelines to handle atomic payments securely. Managed concurrent feature integration, branch structural changes, and code reviews within centralized Git protocols.',
     highlights: [
@@ -105,7 +105,7 @@ export const projectsData = [
     featured: false,
     status: 'Completed',
     technologies: ['Java', 'MySQL', 'SDLC', 'System Analysis', 'Software Testing'],
-    github: 'https://github.com/Kunchana-Wijesinghe',
+    github: 'https://github.com/Kunchana-Wijesinghe/Salon-Sanaru-SE-Group-11',
     description:
       'Architected a commercial operations portal targeting automated client bookings, service allocation tracking, and digital user logging. Drove modules through the entire Software Development Life Cycle (SDLC) from specification mining to design testing.',
     highlights: [
