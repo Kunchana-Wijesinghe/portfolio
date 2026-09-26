@@ -138,10 +138,10 @@ export default function About() {
                 {skillsData.spokenLanguages.map((lang, idx) => (
                   <div
                     key={idx}
-                    className="p-3 rounded-2xl bg-[#051521]/60 border border-white/10 text-center"
+                    className="p-2.5 sm:p-3 rounded-2xl bg-[#051521]/60 border border-white/10 text-center flex flex-col items-center justify-center min-h-[76px]"
                   >
                     <div className="text-sm font-bold text-white">{lang.language}</div>
-                    <div className="text-[11px] text-[#66d8ee] font-mono mt-0.5 truncate">
+                    <div className="text-[11px] text-[#66d8ee] font-mono mt-1 leading-tight text-center">
                       {lang.proficiency}
                     </div>
                   </div>
