@@ -349,6 +349,15 @@ export default function Contact() {
                     Leadership
                   </a>
                 </li>
+                <li className="pt-1">
+                  <a
+                    href={`${import.meta.env.BASE_URL}fiverr/`}
+                    className="text-[#49e3a1] hover:text-[#66d8ee] transition-colors inline-flex items-center gap-1.5 font-mono text-xs"
+                  >
+                    <span>React Bug Fixing (Fiverr)</span>
+                    <span>↗</span>
+                  </a>
+                </li>
               </ul>
             </div>
 
