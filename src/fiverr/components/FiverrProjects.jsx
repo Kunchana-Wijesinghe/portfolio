@@ -1,10 +1,10 @@
-import { getFiverrSelectedProjects, fiverrGigInfo } from '../../data/fiverrData'
+import { getFreelanceProjects, fiverrProfileInfo } from '../../data/fiverrData'
 
 export default function FiverrProjects() {
-  const selectedProjects = getFiverrSelectedProjects()
+  const projects = getFreelanceProjects()
 
   return (
-    <section id="selected-work" className="py-20 sm:py-28 relative bg-[#071d2d]/60 border-t border-white/5">
+    <section id="projects" className="py-20 sm:py-28 relative bg-[#071d2d]/60 border-t border-white/5">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-[#aa75ff]/8 rounded-full blur-3xl pointer-events-none -z-10" />
 
@@ -12,62 +12,72 @@ export default function FiverrProjects() {
         {/* Section Header */}
         <div className="max-w-3xl mb-14">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#49e3a1] tracking-wider mb-3">
-            <span>03 / SELECTED WORK</span>
+            <span>03 / SELECTED PROJECTS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
-            Real Projects &amp; Frontend Code
+            Real Projects &amp; Documented Contributions
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Here are actual web applications I have built and contributed to, demonstrating solid React architecture, responsive design, clean state management, and real-world frontend engineering.
+            Authentic software engineering projects demonstrating full-stack architecture, clean frontend implementations, distributed systems, and real team contributions.
           </p>
         </div>
 
-        {/* Projects Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {selectedProjects.map((project) => (
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {projects.map((project) => (
             <div
               key={project.id}
-              className="ocean-glass rounded-2xl p-6 border border-white/10 flex flex-col justify-between hover:border-[#66d8ee]/40 transition-all duration-300 group"
+              className="ocean-glass rounded-3xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between hover:border-[#66d8ee]/40 transition-all duration-300 group"
             >
               <div>
-                {/* Project Tag & Status */}
+                {/* Header: Badge & Status */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#49e3a1] bg-[#49e3a1]/10 px-2.5 py-1 rounded-full border border-[#49e3a1]/20">
-                    {project.badge || project.projectType || 'Academic Project'}
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#49e3a1] bg-[#49e3a1]/10 px-3 py-1 rounded-full border border-[#49e3a1]/20">
+                    {project.badge || project.projectType}
                   </span>
-                  <span className="text-[11px] font-mono text-slate-400">
-                    {project.status || 'Completed'}
+                  <span className="text-xs font-mono text-slate-400">
+                    {project.status}
                   </span>
                 </div>
 
-                {/* Project Title */}
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#66d8ee] transition-colors">
+                {/* Title & Subtitle */}
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-[#66d8ee] transition-colors">
                   {project.title}
                 </h3>
-
-                {/* Frontend Focus Role */}
-                <div className="mb-3 text-xs font-mono text-[#66d8ee] font-medium bg-white/5 px-2.5 py-1.5 rounded-lg border border-white/5">
-                  Frontend Focus: {project.frontendRole}
+                <div className="text-xs font-mono text-slate-400 mb-4">
+                  {project.subtitle}
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
                   {project.cardDescription || project.description}
                 </p>
 
-                {/* Key Technical Highlights */}
-                <div className="space-y-1.5 mb-5 pt-3 border-t border-white/10">
+                {/* Documented Contribution (Authentic) */}
+                {project.myContribution && (
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 mb-5">
+                    <span className="text-[10px] font-mono text-[#49e3a1] uppercase tracking-wider block font-semibold mb-1">
+                      My Documented Contribution:
+                    </span>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      {project.myContribution}
+                    </p>
+                  </div>
+                )}
+
+                {/* Key Highlights */}
+                <div className="space-y-1.5 mb-6">
                   {(project.highlights || project.keyFeatures || []).slice(0, 3).map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                      <span className="text-[#49e3a1] font-bold text-xs mt-0.5">•</span>
+                      <span className="text-[#66d8ee] font-bold text-xs mt-0.5">•</span>
                       <span>{item}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Tech Stack Badges */}
+                {/* Technologies */}
                 <div className="flex flex-wrap gap-1.5 mb-6">
-                  {(project.technologies || project.tech || []).slice(0, 6).map((tech) => (
+                  {(project.technologies || []).slice(0, 7).map((tech) => (
                     <span
                       key={tech}
                       className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10"
@@ -75,14 +85,19 @@ export default function FiverrProjects() {
                       {tech}
                     </span>
                   ))}
+                  {(project.technologies || []).length > 7 && (
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400">
+                      +{(project.technologies || []).length - 7} more
+                    </span>
+                  )}
                 </div>
               </div>
 
-              {/* GitHub Link & CTA */}
+              {/* Action Links */}
               <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                {project.github || project.githubUrl ? (
+                {project.github ? (
                   <a
-                    href={project.github || project.githubUrl}
+                    href={project.github}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white transition-colors"
@@ -97,21 +112,22 @@ export default function FiverrProjects() {
                 )}
 
                 <a
-                  href={fiverrGigInfo.gigUrl}
+                  href={fiverrProfileInfo.fiverrUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-xs font-bold text-[#49e3a1] hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#49e3a1] hover:text-[#66d8ee] transition-colors"
                 >
-                  Order Fix ↗
+                  <span>Discuss similar project</span>
+                  <span>↗</span>
                 </a>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Authenticity Transparency Card */}
-        <div className="mt-8 text-center text-xs font-mono text-slate-400">
-          * All project codebases above reflect genuine engineering work from my academic and team portfolio. No simulated projects or fictional clients.
+        {/* Authenticity Notice */}
+        <div className="mt-10 text-center text-xs font-mono text-slate-400">
+          * All project representations above reflect genuine SLIIT university and team engineering work from my academic portfolio.
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { fiverrGigInfo } from '../../data/fiverrData'
+import { fiverrProfileInfo } from '../../data/fiverrData'
 import { personalInfo } from '../../data/portfolioData'
 
 export default function FiverrNavbar() {
@@ -15,10 +15,11 @@ export default function FiverrNavbar() {
   }, [])
 
   const navLinks = [
-    { name: 'Bug Types', href: '#bug-types' },
-    { name: 'How I Work', href: '#how-it-works' },
-    { name: 'Selected Work', href: '#selected-work' },
-    { name: 'Technologies', href: '#tech-stack' },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Services & Gigs', href: '#gigs' },
+    { name: 'How I Work', href: '#process' },
     { name: 'FAQ', href: '#faq' },
   ]
 
@@ -48,7 +49,7 @@ export default function FiverrNavbar() {
               {personalInfo.name}
             </span>
             <span className="text-[10px] font-mono text-[#49e3a1] hidden sm:block leading-tight font-medium">
-              React Bug Fixing • Fiverr Gig
+              Freelance Software Developer • Fiverr
             </span>
           </div>
         </a>
@@ -59,7 +60,7 @@ export default function FiverrNavbar() {
             <a
               key={link.name}
               href={link.href}
-              className="px-3 py-1 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-150"
+              className="px-3.5 py-1 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-150"
             >
               {link.name}
             </a>
@@ -70,7 +71,7 @@ export default function FiverrNavbar() {
         <div className="hidden sm:flex items-center gap-2.5">
           <a
             href={mainPortfolioUrl}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-medium text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-all cursor-pointer"
             title="Visit full academic engineering portfolio"
           >
             <span>Main Portfolio</span>
@@ -78,13 +79,13 @@ export default function FiverrNavbar() {
           </a>
 
           <a
-            href={fiverrGigInfo.gigUrl}
+            href={fiverrProfileInfo.fiverrUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold text-[#071d2d] bg-gradient-to-r from-[#49e3a1] via-[#66d8ee] to-[#49e3a1] bg-[length:200%_auto] hover:bg-right rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-            title="Order on Fiverr"
+            title="Discuss a project on Fiverr"
           >
-            <span>Order on Fiverr</span>
+            <span>Contact on Fiverr</span>
             <span className="text-xs font-bold">↗</span>
           </a>
         </div>
@@ -119,7 +120,7 @@ export default function FiverrNavbar() {
         <div className="pointer-events-auto absolute top-16 left-3 right-3 bg-[#071d2d]/98 border border-white/15 backdrop-blur-2xl rounded-2xl p-4 space-y-2 shadow-2xl lg:hidden">
           <div className="pb-2 border-b border-white/10 mb-2">
             <span className="text-xs font-mono text-[#49e3a1] block">
-              React Frontend Bug Fixing Specialist
+              Freelance Software &amp; Frontend Developer
             </span>
           </div>
           {navLinks.map((link) => (
@@ -134,13 +135,13 @@ export default function FiverrNavbar() {
           ))}
           <div className="pt-2 flex flex-col gap-2">
             <a
-              href={fiverrGigInfo.gigUrl}
+              href={fiverrProfileInfo.fiverrUrl}
               target="_blank"
               rel="noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2.5 text-xs font-bold text-[#071d2d] bg-gradient-to-r from-[#49e3a1] to-[#66d8ee] rounded-full shadow-md flex items-center justify-center gap-1.5"
             >
-              <span>Order on Fiverr</span>
+              <span>Contact on Fiverr</span>
               <span>↗</span>
             </a>
             <a

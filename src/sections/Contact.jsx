@@ -354,7 +354,7 @@ export default function Contact() {
                     href={`${import.meta.env.BASE_URL}fiverr/`}
                     className="text-[#49e3a1] hover:text-[#66d8ee] transition-colors inline-flex items-center gap-1.5 font-mono text-xs"
                   >
-                    <span>React Bug Fixing (Fiverr)</span>
+                    <span>Freelance &amp; Services (Fiverr)</span>
                     <span>↗</span>
                   </a>
                 </li>

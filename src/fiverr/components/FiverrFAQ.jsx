@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { fiverrFaqs, fiverrGigInfo } from '../../data/fiverrData'
+import { fiverrFaqs, fiverrProfileInfo } from '../../data/fiverrData'
 
 export default function FiverrFAQ() {
   const [openIndex, setOpenIndex] = useState(0)
@@ -9,18 +9,18 @@ export default function FiverrFAQ() {
   }
 
   return (
-    <section id="faq" className="py-20 sm:py-28 relative bg-[#071d2d]/60 border-t border-white/5">
+    <section id="faq" className="py-20 sm:py-28 relative bg-[#071d2d] border-t border-white/5">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#49e3a1] tracking-wider mb-3">
-            <span>05 / FAQ</span>
+            <span>06 / FAQ</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Everything you need to know about preparing your issue, ordering through Fiverr, and receiving your bug fix.
+            Common questions about placing custom orders, project scope, revisions, and communication on Fiverr.
           </p>
         </div>
 
@@ -61,13 +61,13 @@ export default function FiverrFAQ() {
           })}
         </div>
 
-        {/* Have another question? */}
+        {/* Direct Link to Message */}
         <div className="mt-12 text-center">
           <p className="text-xs sm:text-sm text-slate-400 mb-3">
-            Have a question specific to your repository or package configuration?
+            Have a question specific to your application or technology stack?
           </p>
           <a
-            href={fiverrGigInfo.gigUrl}
+            href={fiverrProfileInfo.fiverrUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#66d8ee] hover:text-[#49e3a1] underline underline-offset-4 cursor-pointer"

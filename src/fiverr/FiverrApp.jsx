@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import FiverrNavbar from './components/FiverrNavbar'
 import FiverrHero from './components/FiverrHero'
-import FiverrBugTypes from './components/FiverrBugTypes'
-import FiverrProcess from './components/FiverrProcess'
+import FiverrAbout from './components/FiverrAbout'
+import FiverrSkills from './components/FiverrSkills'
 import FiverrProjects from './components/FiverrProjects'
-import FiverrTechStack from './components/FiverrTechStack'
+import FiverrGigs from './components/FiverrGigs'
+import FiverrProcess from './components/FiverrProcess'
 import FiverrFAQ from './components/FiverrFAQ'
 import FiverrFooter from './components/FiverrFooter'
 
@@ -32,10 +33,11 @@ export default function FiverrApp() {
 
       <main id="fiverr-content" className="flex-1">
         <FiverrHero />
-        <FiverrBugTypes />
-        <FiverrProcess />
+        <FiverrAbout />
+        <FiverrSkills />
         <FiverrProjects />
-        <FiverrTechStack />
+        <FiverrGigs />
+        <FiverrProcess />
         <FiverrFAQ />
       </main>
 
