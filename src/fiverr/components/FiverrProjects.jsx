@@ -33,10 +33,10 @@ export default function FiverrProjects() {
                 {/* Project Tag & Status */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-[#49e3a1] bg-[#49e3a1]/10 px-2.5 py-1 rounded-full border border-[#49e3a1]/20">
-                    {project.category}
+                    {project.badge || project.projectType || 'Academic Project'}
                   </span>
                   <span className="text-[11px] font-mono text-slate-400">
-                    {project.timeline}
+                    {project.status || 'Completed'}
                   </span>
                 </div>
 
@@ -52,12 +52,12 @@ export default function FiverrProjects() {
 
                 {/* Description */}
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-                  {project.tagline}
+                  {project.cardDescription || project.description}
                 </p>
 
                 {/* Key Technical Highlights */}
                 <div className="space-y-1.5 mb-5 pt-3 border-t border-white/10">
-                  {project.highlights.slice(0, 3).map((item, idx) => (
+                  {(project.highlights || project.keyFeatures || []).slice(0, 3).map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
                       <span className="text-[#49e3a1] font-bold text-xs mt-0.5">•</span>
                       <span>{item}</span>
@@ -67,7 +67,7 @@ export default function FiverrProjects() {
 
                 {/* Tech Stack Badges */}
                 <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tech.map((tech) => (
+                  {(project.technologies || project.tech || []).slice(0, 6).map((tech) => (
                     <span
                       key={tech}
                       className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10"
@@ -80,9 +80,9 @@ export default function FiverrProjects() {
 
               {/* GitHub Link & CTA */}
               <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                {project.githubUrl ? (
+                {project.github || project.githubUrl ? (
                   <a
-                    href={project.githubUrl}
+                    href={project.github || project.githubUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white transition-colors"
