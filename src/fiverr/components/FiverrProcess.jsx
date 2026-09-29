@@ -1,4 +1,4 @@
-import { freelanceWorkflow, fiverrProfileInfo } from '../../data/fiverrData'
+import { freelanceWorkflow, fiverrUrls } from '../../data/fiverrData'
 
 export default function FiverrProcess() {
   return (
@@ -9,13 +9,13 @@ export default function FiverrProcess() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#49e3a1] tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-[#49e3a1] tracking-wider mb-3 font-semibold">
             <span>05 / PROCESS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
             How We Collaborate on Fiverr
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
             Every engagement follows a structured, transparent process with clear milestones, regular progress updates, and secure escrow on Fiverr.
           </p>
         </div>
@@ -25,7 +25,7 @@ export default function FiverrProcess() {
           {freelanceWorkflow.map((item, index) => (
             <div
               key={item.step}
-              className="ocean-glass rounded-2xl p-5 border border-white/10 flex flex-col justify-between hover:border-[#49e3a1]/40 transition-all duration-300 relative group"
+              className="ocean-glass rounded-2xl p-5 sm:p-6 border border-white/10 flex flex-col justify-between hover:border-[#49e3a1]/40 transition-all duration-300 relative group"
             >
               <div>
                 {/* Step Number & Tag */}
@@ -33,23 +33,23 @@ export default function FiverrProcess() {
                   <span className="text-2xl sm:text-3xl font-extrabold font-mono text-[#49e3a1]">
                     {item.step}
                   </span>
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                  <span className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded border border-white/10">
                     {item.tag}
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-white mb-2 group-hover:text-[#49e3a1] transition-colors">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-[#49e3a1] transition-colors">
                   {item.title}
                 </h3>
 
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
                   {item.description}
                 </p>
               </div>
 
               {/* Step indicator */}
               <div className="mt-5 pt-3 border-t border-white/5 flex items-center justify-between">
-                <span className="text-[10px] font-mono text-slate-400">
+                <span className="text-xs font-mono text-slate-300">
                   Step {index + 1} of 5
                 </span>
                 <span className="text-xs text-[#49e3a1]">✓</span>
@@ -65,22 +65,22 @@ export default function FiverrProcess() {
               🛡️
             </div>
             <div>
-              <div className="text-sm font-bold text-white mb-0.5">
+              <div className="text-sm sm:text-base font-bold text-white mb-0.5">
                 Protected by Fiverr Escrow &amp; Dispute Resolution
               </div>
-              <div className="text-xs text-slate-300">
-                All agreements, custom offers, milestones, and deliverables take place securely on Fiverr with complete client buyer protection.
+              <div className="text-xs sm:text-sm text-slate-200">
+                All agreements, custom offers, milestones, and deliverables take place securely on Fiverr with complete buyer protection.
               </div>
             </div>
           </div>
 
           <a
-            href={fiverrProfileInfo.fiverrUrl}
+            href={fiverrUrls.reactBugFixingGig}
             target="_blank"
             rel="noreferrer"
-            className="shrink-0 px-6 py-2.5 rounded-full bg-[#49e3a1] text-[#071d2d] font-bold text-xs hover:bg-[#66d8ee] transition-colors cursor-pointer"
+            className="shrink-0 px-6 py-3 rounded-full bg-[#49e3a1] text-[#071d2d] font-bold text-xs sm:text-sm hover:bg-[#66d8ee] transition-colors cursor-pointer shadow-md"
           >
-            Start on Fiverr ↗
+            <span>View Active Gig ↗</span>
           </a>
         </div>
       </div>

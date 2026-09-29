@@ -1,8 +1,9 @@
-import { fiverrProfileInfo } from '../../data/fiverrData'
+import { fiverrUrls } from '../../data/fiverrData'
 import { personalInfo } from '../../data/portfolioData'
 
 export default function FiverrFooter() {
   const mainPortfolioUrl = import.meta.env.BASE_URL
+  const hasProfileUrl = Boolean(fiverrUrls.fiverrProfileUrl && fiverrUrls.fiverrProfileUrl.trim())
 
   return (
     <footer id="contact" className="py-20 sm:py-28 relative bg-[#071d2d] border-t border-white/10 overflow-hidden">
@@ -16,49 +17,76 @@ export default function FiverrFooter() {
         {/* Big CTA Card */}
         <div className="ocean-glass rounded-3xl p-8 sm:p-12 lg:p-16 border border-white/15 text-center relative overflow-hidden shadow-2xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#49e3a1] animate-pulse" />
-            <span className="text-xs font-mono text-slate-300">
-              Open for Custom Projects &amp; Inquiries
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#49e3a1] animate-pulse" />
+            <span className="text-xs sm:text-sm font-mono text-slate-200 font-medium">
+              Available on Fiverr for Bug Fixes &amp; Custom Work
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4 max-w-2xl mx-auto">
-            Ready to bring your project to life?
+            Ready to build or improve your web project?
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-8">
-            Send me a message with your project brief, repository, or UI designs on Fiverr. We will align on goals, scope, and milestones.
+          <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-8">
+            Order directly through my published React bug-fixing Gig on Fiverr, or explore custom project inquiries for bespoke web development and API integration.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* React Bug Fixing Gig CTA */}
             <a
-              href={fiverrProfileInfo.fiverrUrl}
+              href={fiverrUrls.reactBugFixingGig}
               target="_blank"
               rel="noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#49e3a1] via-[#66d8ee] to-[#49e3a1] bg-[length:200%_auto] hover:bg-right text-[#071d2d] font-extrabold text-sm sm:text-base shadow-xl shadow-[#49e3a1]/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              title="Open published React bug-fixing Gig on Fiverr"
             >
-              <span>Contact me on Fiverr</span>
+              <span>View React Bug-Fixing Gig</span>
               <span className="text-lg font-bold">↗</span>
             </a>
 
+            {/* Custom Inquiry CTA */}
+            {hasProfileUrl ? (
+              <a
+                href={fiverrUrls.fiverrProfileUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base border border-white/20 transition-all cursor-pointer"
+                title="Message seller on Fiverr for custom inquiries"
+              >
+                <span>Custom Inquiry on Fiverr</span>
+                <span className="text-base font-bold">↗</span>
+              </a>
+            ) : (
+              <a
+                href="#gigs"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base border border-white/20 transition-all cursor-pointer"
+                title="View custom project inquiry options"
+              >
+                <span>Custom Project Inquiries</span>
+                <span className="text-xs">↓</span>
+              </a>
+            )}
+
+            {/* Main Portfolio Link */}
             <a
               href={mainPortfolioUrl}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white font-medium text-sm sm:text-base border border-white/15 transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white font-medium text-sm sm:text-base border border-white/10 transition-all cursor-pointer"
+              title="Return to main academic engineering portfolio"
             >
-              <span>Visit Full Engineering Portfolio</span>
+              <span>Main Portfolio</span>
               <span className="text-xs">↗</span>
             </a>
           </div>
 
           {/* Fiverr Safety Notice */}
-          <div className="mt-8 text-xs font-mono text-slate-400">
-            🔒 All transactions, project agreements, and milestone deliveries are conducted securely via Fiverr.
+          <div className="mt-8 text-xs sm:text-sm font-mono text-slate-300">
+            🔒 All orders, milestones, and deliverables are conducted securely via Fiverr.
           </div>
         </div>
 
         {/* Footer Sub-Bar */}
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm font-mono text-slate-300">
           <div>
             © {new Date().getFullYear()} {personalInfo.name} • Freelance Software Developer
           </div>
@@ -72,12 +100,12 @@ export default function FiverrFooter() {
             </a>
             <span>•</span>
             <a
-              href={fiverrProfileInfo.fiverrUrl}
+              href={fiverrUrls.reactBugFixingGig}
               target="_blank"
               rel="noreferrer"
               className="hover:text-[#49e3a1] transition-colors"
             >
-              Fiverr Profile ↗
+              React Bug Gig ↗
             </a>
             <span>•</span>
             <a
