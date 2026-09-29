@@ -14,10 +14,10 @@ export const fiverrUrls = {
 
 export const fiverrProfileInfo = {
   sellerName: personalInfo.name,
-  tagline: 'Freelance Software & Frontend Developer',
-  headline: 'Building Responsive Web Apps & Clean Frontend Solutions',
+  tagline: 'Freelance Software & Web Developer',
+  headline: 'Building & Improving Web Applications',
   subheadline:
-    'I help clients build responsive React web applications, integrate frontend interfaces with backend REST APIs, and resolve tricky frontend UI and state bugs. Focused on clean code, predictable state, and maintainable architecture.',
+    'I help clients build responsive web applications, integrate frontend interfaces with backend REST APIs, and resolve tricky technical and state bugs. Focused on clean code, reliable performance, and maintainable architecture.',
   location: personalInfo.location,
 }
 

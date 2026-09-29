@@ -25,21 +25,21 @@ export default function FiverrHero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#49e3a1]"></span>
             </span>
             <span className="text-xs sm:text-sm font-mono font-medium tracking-wide text-slate-200">
-              FREELANCE SOFTWARE &amp; FRONTEND DEVELOPER • FIVERR
+              FREELANCE SOFTWARE &amp; WEB DEVELOPER • FIVERR
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Headline - General & Future-Proof */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6">
-            Building &amp; Refining Reliable Web Applications with{' '}
+            Building &amp; Improving{' '}
             <span className="bg-gradient-to-r from-[#49e3a1] via-[#66d8ee] to-[#aa75ff] bg-clip-text text-transparent">
-              React &amp; Modern Tech.
+              Web Applications.
             </span>
           </h1>
 
           {/* Subtitle - Explains what I build/improve before academic details */}
           <p className="text-base sm:text-lg text-slate-200 leading-relaxed mb-9 max-w-2xl mx-auto">
-            I help clients build responsive React web applications, integrate frontend interfaces with backend REST APIs, and resolve tricky frontend UI and state bugs. Focused on clean code, predictable state, and maintainable architecture.
+            I help clients build responsive web applications, integrate frontend interfaces with backend REST APIs, and resolve tricky technical and state bugs. Focused on clean code, reliable performance, and maintainable architecture.
           </p>
 
           {/* Action CTAs */}
@@ -64,34 +64,34 @@ export default function FiverrHero() {
             </a>
           </div>
 
-          {/* Practical Value Highlights (Client-focused) */}
+          {/* Practical Engineering Capabilities (Real Skills & Projects) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
             <div className="ocean-glass rounded-2xl p-5 border border-white/10">
-              <div className="text-2xl mb-2">⚛️</div>
-              <div className="text-sm sm:text-base font-bold text-white mb-1">Responsive React SPAs</div>
+              <div className="text-2xl mb-2">💻</div>
+              <div className="text-sm sm:text-base font-bold text-white mb-1">Modern Web &amp; UI Development</div>
               <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Component-driven Single Page Applications using React 19, Tailwind CSS, and Vite.
+                Responsive, accessible Single Page Applications using modern JavaScript, React 19, and Tailwind CSS.
               </div>
             </div>
             <div className="ocean-glass rounded-2xl p-5 border border-white/10">
               <div className="text-2xl mb-2">⚙️</div>
-              <div className="text-sm sm:text-base font-bold text-white mb-1">REST API Integration</div>
+              <div className="text-sm sm:text-base font-bold text-white mb-1">Frontend &amp; Backend Integration</div>
               <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Connecting frontends cleanly to backend APIs (Spring Boot, ASP.NET Core, MySQL).
+                Connecting interfaces cleanly to backend services (Java Spring Boot, ASP.NET Core, REST APIs).
+              </div>
+            </div>
+            <div className="ocean-glass rounded-2xl p-5 border border-white/10">
+              <div className="text-2xl mb-2">🐬</div>
+              <div className="text-sm sm:text-base font-bold text-white mb-1">Database &amp; Systems Architecture</div>
+              <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Managing relational schemas in MySQL, containerizing with Docker, and structuring robust workflows.
               </div>
             </div>
             <div className="ocean-glass rounded-2xl p-5 border border-white/10">
               <div className="text-2xl mb-2">🔍</div>
-              <div className="text-sm sm:text-base font-bold text-white mb-1">Targeted Bug Fixing</div>
+              <div className="text-sm sm:text-base font-bold text-white mb-1">Troubleshooting &amp; Bug Fixing</div>
               <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Isolating state desync, form validation errors, and mobile layout overflow issues.
-              </div>
-            </div>
-            <div className="ocean-glass rounded-2xl p-5 border border-white/10">
-              <div className="text-2xl mb-2">🛡️</div>
-              <div className="text-sm sm:text-base font-bold text-white mb-1">Escrow Protected</div>
-              <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Secure ordering, milestone reviews, and buyer protection directly via Fiverr.
+                Diagnosing and eliminating state desync, form validation errors, and mobile layout overflow issues.
               </div>
             </div>
           </div>
