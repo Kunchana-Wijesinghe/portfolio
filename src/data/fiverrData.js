@@ -3,13 +3,9 @@ import { personalInfo, projectsData, skillsData } from './portfolioData'
 /**
  * Fiverr URLs Configuration:
  * - reactBugFixingGig: Verified live link to your published React bug-fixing Gig.
- * - fiverrProfileUrl: Your direct Fiverr seller profile URL (e.g., 'https://www.fiverr.com/kunchana_wije').
- *   When you have your direct profile link, paste it below so general inquiry buttons open your profile.
  */
 export const fiverrUrls = {
   reactBugFixingGig: 'https://www.fiverr.com/s/GPzZ9w3',
-  // Paste your direct Fiverr profile URL here when available:
-  fiverrProfileUrl: '',
 }
 
 export const fiverrProfileInfo = {
@@ -23,8 +19,7 @@ export const fiverrProfileInfo = {
 
 /**
  * Currently published Fiverr Gigs.
- * Currently exactly ONE published gig: React frontend bug fixing.
- * Future gigs can simply be added to this array as they are published.
+ * Exactly ONE published gig: React frontend bug fixing.
  */
 export const fiverrPublishedGigs = [
   {
@@ -38,10 +33,10 @@ export const fiverrPublishedGigs = [
     icon: '⚛️',
     tags: ['React 18 / 19', 'JavaScript (ES6+)', 'TypeScript', 'Tailwind CSS', 'Debugging'],
     highlights: [
-      'Targeted component & hook debugging without regressions',
-      'Responsive design & mobile layout overflow fixes',
-      'Clear root-cause explanations with delivered code',
-      'Fast turnaround via Fiverr order milestone',
+      'Targeted component and hook debugging focused on avoiding unintended side effects',
+      'Responsive design and mobile layout overflow fixes',
+      'Clear root-cause explanations provided with delivered code',
+      'Prompt delivery via structured Fiverr order milestones',
     ],
   },
 ]
@@ -73,7 +68,7 @@ export const freelanceCapabilities = [
   {
     id: 'frontend',
     icon: '💻',
-    title: 'Modern Frontend Development',
+    title: 'Modern Web Development',
     description:
       'Building performant, accessible Single Page Applications (SPAs) with React, modern JavaScript (ES6+), TypeScript, Vite, and Tailwind CSS.',
     technologies: ['React 18 / 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'Zustand'],
@@ -119,7 +114,7 @@ export const freelanceWorkflow = [
     step: '02',
     title: 'Scope & Custom Offer',
     description:
-      'For custom work or specific gig orders, we establish a clearly scoped proposal and timeline on Fiverr so you are fully protected by escrow.',
+      'For custom work or specific gig orders, we establish a clearly scoped proposal and timeline directly through Fiverr before work begins.',
     tag: 'ALIGNMENT',
   },
   {
@@ -133,7 +128,7 @@ export const freelanceWorkflow = [
     step: '04',
     title: 'Testing & Verification',
     description:
-      'Thorough testing across viewports and edge cases to ensure the deliverable is bug-free, performs smoothly, and meets all agreed requirements.',
+      'Thorough checks across common responsive viewports and edge cases to verify expected functionality before delivery.',
     tag: 'VERIFICATION',
   },
   {
@@ -155,11 +150,11 @@ export const fiverrFaqs = [
   },
   {
     q: 'How do I discuss a custom project that is not covered by your bug-fixing Gig?',
-    a: 'You can message me directly on Fiverr with your repository, UI mockups, or task description. I will review your requirements and send you a custom offer with a clear scope and timeline.',
+    a: 'You can message me directly on Fiverr by opening my active Gig and clicking "Contact Seller" with your repository, UI mockups, or task description. I will review your requirements and send you a custom offer with a clear scope and timeline.',
   },
   {
     q: 'How does the ordering and payment process work?',
-    a: 'All project discussions, custom offers, milestones, and payments are handled securely through Fiverr. Your payment is held in escrow by Fiverr and only released when you have reviewed and approved the delivered work.',
+    a: 'All project discussions, custom offers, milestones, and payments are handled directly through Fiverr, providing a structured order workflow.',
   },
   {
     q: 'What do you need from me to get started on an inquiry?',

@@ -26,7 +26,7 @@ export default function FiverrAbout() {
                 In my project work, I apply these principles directly to web development—building responsive Single Page Applications in React, implementing RESTful APIs in Java Spring Boot and ASP.NET Core, and managing containerized multi-service workflows with Docker.
               </p>
               <p>
-                When working with clients on Fiverr, I take pride in disciplined engineering: writing readable, modular code, keeping dependencies clean, and ensuring zero regressions in existing codebases.
+                When working with clients on Fiverr, I take pride in disciplined engineering: writing readable, modular code, keeping dependencies clean, and carefully testing changes to minimize the risk of unintended side effects.
               </p>
             </div>
 
@@ -41,8 +41,8 @@ export default function FiverrAbout() {
                 <span className="text-sm font-bold text-white">Year 3, Semester 1 (Y3S1)</span>
               </div>
               <div className="ocean-glass rounded-xl p-4 border border-white/10">
-                <span className="text-xs font-mono text-slate-400 block uppercase font-medium mb-1">Client Delivery</span>
-                <span className="text-sm font-bold text-[#49e3a1]">Fiverr Escrow Protected</span>
+                <span className="text-xs font-mono text-slate-400 block uppercase font-medium mb-1">Workflow</span>
+                <span className="text-sm font-bold text-[#49e3a1]">Handled via Fiverr</span>
               </div>
             </div>
           </div>
@@ -84,9 +84,9 @@ export default function FiverrAbout() {
                     3
                   </span>
                   <div>
-                    <h4 className="text-sm sm:text-base font-bold text-white mb-1">Cross-Device Verification</h4>
+                    <h4 className="text-sm sm:text-base font-bold text-white mb-1">Responsive Verification</h4>
                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      Every deliverable is verified across mobile, tablet, and desktop viewports with clean console logs and error boundaries.
+                      Deliverables are checked across common responsive viewport sizes (mobile, tablet, desktop) with attention to console warnings and error boundaries.
                     </p>
                   </div>
                 </div>

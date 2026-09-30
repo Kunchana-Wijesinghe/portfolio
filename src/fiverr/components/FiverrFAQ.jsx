@@ -3,7 +3,6 @@ import { fiverrFaqs, fiverrUrls } from '../../data/fiverrData'
 
 export default function FiverrFAQ() {
   const [openIndex, setOpenIndex] = useState(0)
-  const hasProfileUrl = Boolean(fiverrUrls.fiverrProfileUrl && fiverrUrls.fiverrProfileUrl.trim())
 
   const toggleFaq = (index) => {
     setOpenIndex(openIndex === index ? -1 : index)
@@ -67,27 +66,15 @@ export default function FiverrFAQ() {
           <p className="text-xs sm:text-sm text-slate-300 mb-3">
             Have a question specific to your application or technology stack?
           </p>
-          {hasProfileUrl ? (
-            <a
-              href={fiverrUrls.fiverrProfileUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#66d8ee] hover:text-[#49e3a1] underline underline-offset-4 cursor-pointer"
-            >
-              <span>Message me directly on Fiverr profile</span>
-              <span>↗</span>
-            </a>
-          ) : (
-            <a
-              href={fiverrUrls.reactBugFixingGig}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#66d8ee] hover:text-[#49e3a1] underline underline-offset-4 cursor-pointer"
-            >
-              <span>Contact via &ldquo;Contact Seller&rdquo; on my active Fiverr Gig</span>
-              <span>↗</span>
-            </a>
-          )}
+          <a
+            href={fiverrUrls.reactBugFixingGig}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#66d8ee] hover:text-[#49e3a1] underline underline-offset-4 cursor-pointer"
+          >
+            <span>Contact via &ldquo;Contact Seller&rdquo; on my active Fiverr Gig</span>
+            <span>↗</span>
+          </a>
         </div>
       </div>
     </section>

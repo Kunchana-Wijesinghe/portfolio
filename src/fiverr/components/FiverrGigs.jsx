@@ -3,13 +3,9 @@ import { fiverrPublishedGigs, customInquiryInfo, fiverrUrls, freelanceCapabiliti
 
 export default function FiverrGigs() {
   const [showInquiryHelp, setShowInquiryHelp] = useState(false)
-  const hasProfileUrl = Boolean(fiverrUrls.fiverrProfileUrl && fiverrUrls.fiverrProfileUrl.trim())
 
-  const handleCustomInquiryClick = (e) => {
-    if (!hasProfileUrl) {
-      e.preventDefault()
-      setShowInquiryHelp(true)
-    }
+  const handleCustomInquiryClick = () => {
+    setShowInquiryHelp((prev) => !prev)
   }
 
   return (
@@ -89,7 +85,7 @@ export default function FiverrGigs() {
               {/* Action - Explicitly links to the React bug-fixing Gig */}
               <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <span className="text-xs font-mono text-slate-300">
-                  Live on Fiverr • Escrow Protected
+                  Live on Fiverr • Active Offering
                 </span>
                 <a
                   href={gig.url}
@@ -158,32 +154,19 @@ export default function FiverrGigs() {
                 Bespoke Scope &amp; Milestones
               </span>
 
-              {hasProfileUrl ? (
-                <a
-                  href={fiverrUrls.fiverrProfileUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
-                  title="Contact seller directly on Fiverr profile for custom inquiry"
-                >
-                  <span>Discuss Custom Scope on Fiverr</span>
-                  <span className="text-sm font-bold">↗</span>
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleCustomInquiryClick}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
-                  title="How to send a custom project inquiry on Fiverr"
-                >
-                  <span>Inquire for Custom Work</span>
-                  <span className="text-xs font-mono">ℹ</span>
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={handleCustomInquiryClick}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
+                title="How to discuss a custom project on Fiverr"
+              >
+                <span>Inquire for Custom Work</span>
+                <span className="text-xs font-mono">{showInquiryHelp ? '✕' : 'ℹ'}</span>
+              </button>
             </div>
 
-            {/* Custom Inquiry Modal / Callout if direct profile URL is not yet configured */}
-            {showInquiryHelp && !hasProfileUrl && (
+            {/* Custom Inquiry Help Callout */}
+            {showInquiryHelp && (
               <div className="mt-4 p-4 rounded-2xl bg-[#051521] border border-[#66d8ee]/40 text-xs sm:text-sm text-slate-200 space-y-2.5 animate-fadeIn">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-white flex items-center gap-2">
@@ -198,7 +181,7 @@ export default function FiverrGigs() {
                   </button>
                 </div>
                 <p className="text-slate-300 leading-relaxed text-xs">
-                  For custom project scopes (outside of bug fixing), you can contact me via the <strong>&ldquo;Contact Seller&rdquo;</strong> button on my Fiverr Gig page, or add your direct seller profile URL into <code className="bg-white/10 px-1 py-0.5 rounded font-mono text-[#49e3a1]">src/data/fiverrData.js</code> under <code className="bg-white/10 px-1 py-0.5 rounded font-mono text-[#49e3a1]">fiverrProfileUrl</code>.
+                  To discuss a custom project or tailored scope, open my active Fiverr Gig and click the <strong>&ldquo;Contact Seller&rdquo;</strong> button to message me directly with your project requirements.
                 </p>
                 <div className="pt-1">
                   <a

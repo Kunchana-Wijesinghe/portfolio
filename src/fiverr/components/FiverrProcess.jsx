@@ -16,7 +16,7 @@ export default function FiverrProcess() {
             How We Collaborate on Fiverr
           </h2>
           <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-            Every engagement follows a structured, transparent process with clear milestones, regular progress updates, and secure escrow on Fiverr.
+            Every engagement follows a structured, transparent process with clear milestones, regular progress updates, and clear scope alignment through Fiverr.
           </p>
         </div>
 
@@ -66,10 +66,10 @@ export default function FiverrProcess() {
             </div>
             <div>
               <div className="text-sm sm:text-base font-bold text-white mb-0.5">
-                Protected by Fiverr Escrow &amp; Dispute Resolution
+                Order &amp; Scope Management Through Fiverr
               </div>
               <div className="text-xs sm:text-sm text-slate-200">
-                All agreements, custom offers, milestones, and deliverables take place securely on Fiverr with complete buyer protection.
+                Discuss project scope, confirm milestones, and place orders directly through Fiverr.
               </div>
             </div>
           </div>

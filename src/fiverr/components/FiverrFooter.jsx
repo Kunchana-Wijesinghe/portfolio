@@ -3,7 +3,6 @@ import { personalInfo } from '../../data/portfolioData'
 
 export default function FiverrFooter() {
   const mainPortfolioUrl = import.meta.env.BASE_URL
-  const hasProfileUrl = Boolean(fiverrUrls.fiverrProfileUrl && fiverrUrls.fiverrProfileUrl.trim())
 
   return (
     <footer id="contact" className="py-20 sm:py-28 relative bg-[#071d2d] border-t border-white/10 overflow-hidden">
@@ -46,27 +45,14 @@ export default function FiverrFooter() {
             </a>
 
             {/* Custom Inquiry CTA */}
-            {hasProfileUrl ? (
-              <a
-                href={fiverrUrls.fiverrProfileUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base border border-white/20 transition-all cursor-pointer"
-                title="Message seller on Fiverr for custom inquiries"
-              >
-                <span>Custom Inquiry on Fiverr</span>
-                <span className="text-base font-bold">↗</span>
-              </a>
-            ) : (
-              <a
-                href="#gigs"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base border border-white/20 transition-all cursor-pointer"
-                title="View custom project inquiry options"
-              >
-                <span>Custom Project Inquiries</span>
-                <span className="text-xs">↓</span>
-              </a>
-            )}
+            <a
+              href="#gigs"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base border border-white/20 transition-all cursor-pointer"
+              title="View custom project inquiry options"
+            >
+              <span>Custom Project Inquiries</span>
+              <span className="text-xs">↓</span>
+            </a>
 
             {/* Main Portfolio Link */}
             <a
@@ -79,9 +65,9 @@ export default function FiverrFooter() {
             </a>
           </div>
 
-          {/* Fiverr Safety Notice */}
+          {/* Scope & Order Notice */}
           <div className="mt-8 text-xs sm:text-sm font-mono text-slate-300">
-            🔒 All orders, milestones, and deliverables are conducted securely via Fiverr.
+            Discuss project scope and place orders through Fiverr.
           </div>
         </div>
 
