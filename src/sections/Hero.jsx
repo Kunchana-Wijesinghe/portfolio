@@ -46,7 +46,7 @@ export default function Hero() {
                 {personalInfo.name}
               </h1>
               <p className="text-xl sm:text-2xl font-semibold bg-gradient-to-r from-[#66d8ee] via-[#49e3a1] to-[#aa75ff] bg-clip-text text-transparent">
-                {personalInfo.role}
+                {personalInfo.tagline}
               </p>
             </div>
 
