@@ -1,158 +1,170 @@
-import { skillsData } from '../data/portfolioData'
+import { personalInfo, spokenLanguages } from '../data/portfolioData'
 
 export default function About() {
+  const cvUrl = `${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`
+
+  const coreFocusAreas = [
+    { title: 'Full-Stack Engineering', desc: 'React, TypeScript, Java Spring Boot & ASP.NET Core REST APIs' },
+    { title: 'Cloud & DevOps', desc: 'AWS & Azure cloud infrastructure, Docker containerization & CI/CD' },
+    { title: 'Quality & Test Automation', desc: 'GitHub Actions pipelines, baseline linting & coverage gates' },
+    { title: 'Distributed Systems', desc: 'Atomic transactions, concurrency control & Kafka event pipelines' },
+  ]
+
   return (
-    <section id="about" className="py-20 sm:py-28 relative bg-[#071d2d] border-t border-white/10 overflow-hidden">
+    <section id="about" className="py-24 relative bg-section-alt border-t border-white/10 overflow-hidden text-left">
       {/* Background Watermark */}
       <div className="section-watermark">ABOUT</div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col items-start mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#66d8ee]/10 border border-[#66d8ee]/25 text-[#66d8ee] font-mono text-xs mb-3">
-            <span>01 // PROFILE &amp; FOUNDATION</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Engineering Software with <span className="bg-gradient-to-r from-[#66d8ee] via-[#49e3a1] to-[#aa75ff] bg-clip-text text-transparent">Purpose &amp; Precision</span>
-          </h2>
-          <p className="mt-2 text-slate-300 text-sm sm:text-base max-w-2xl">
-            A comprehensive overview of my academic foundation at SLIIT, software engineering mindset, and communication capabilities.
-          </p>
-        </div>
-
-        {/* Balanced Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          
-          {/* Main Professional Bio (Large Card) */}
-          <div className="lg:col-span-7 ocean-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#66d8ee] font-semibold">
-                  Executive Profile
-                </span>
-                <a
-                  href={`${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`}
-                  download="Kunchana_Wijesinghe_CV.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-xs text-[#49e3a1] hover:text-[#66d8ee] transition-colors cursor-pointer"
-                  title="Download Official CV (PDF)"
-                >
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  <span>Download CV</span>
-                </a>
-              </div>
-
-              <div className="space-y-3.5 text-slate-300 text-sm leading-relaxed">
-                <p>
-                  I am a driven 3rd Year Computer Science undergraduate (Year 3, Semester 1) at{' '}
-                  <strong className="text-white font-semibold">
-                    Sri Lanka Institute of Information Technology (SLIIT)
-                  </strong>
-                  , with comprehensive theoretical and applied foundations spanning Advanced Software Engineering, Parallel Computing, Intelligent Systems, Distributed Architectures, and Algorithm Design.
-                </p>
-                <p>
-                  Specializing in <span className="text-[#66d8ee] font-medium">Java architecture</span>,
-                  object-oriented paradigms, and structural database development. Having completed 13 years of schooling at{' '}
-                  <strong className="text-white font-semibold">Richmond College, Galle</strong>, I have cultivated
-                  deep discipline, collaborative communication, and executive student governance.
-                </p>
-                <p>
-                  My engineering journey focuses on building reliable, clean software systems—ranging from full-stack
-                  academic applications to consensus-driven distributed payment networks and normalized relational databases.
-                </p>
-              </div>
-
-              {/* Education affiliation tag row */}
-              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-xs">
-                <div className="p-3 rounded-2xl bg-[#051521]/60 border border-white/10">
-                  <div className="text-[#66d8ee] font-semibold">SLIIT 3rd Year Undergrad</div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">BSc (Hons) in Computer Science • Y3S1</div>
-                </div>
-                <div className="p-3 rounded-2xl bg-[#051521]/60 border border-white/10">
-                  <div className="text-[#49e3a1] font-semibold">Richmond College Alumnus</div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">Primary &amp; Secondary (2010 — 2023)</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Engineering Pillars at bottom */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-2">
-              <span className="px-3 py-1 rounded-full bg-[#051521]/70 text-xs font-mono text-slate-200 border border-white/10">
-                ⚡ Object-Oriented Architecture
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[#051521]/70 text-xs font-mono text-slate-200 border border-white/10">
-                🌐 Distributed Consensus
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[#051521]/70 text-xs font-mono text-slate-200 border border-white/10">
-                💾 Relational DB Normalization
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[#051521]/70 text-xs font-mono text-slate-200 border border-white/10">
-                🔄 Clean SDLC &amp; Git Workflows
-              </span>
-            </div>
-          </div>
-
-          {/* Right Column Bento Cards */}
-          <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="glass-card p-6 sm:p-10 lg:p-12 rounded-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Key Soft Attributes Card */}
-            <div className="ocean-glass rounded-3xl p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="text-base sm:text-lg font-bold text-white mb-1">
-                  Key Attributes &amp; Mindset
-                </h3>
-                <p className="text-xs text-slate-400 font-mono mb-4">
-                  Core execution competencies &amp; teamwork traits
-                </p>
+            {/* Left Column: Personal Overview & Core Engineering Domains */}
+            <div className="lg:col-span-5 space-y-6">
+              {/* Candidate Overview Card */}
+              <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3.5">
+                <div className="flex items-center gap-2.5 pb-3 border-b border-white/10">
+                  <div className="w-8 h-8 rounded-lg bg-[#07503F] text-[#49E3A1] flex items-center justify-center text-sm border border-[#49E3A1]/30">
+                    <i className="bi bi-person-vcard" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-mono font-bold text-[#F8FAFC] uppercase tracking-wider">
+                      Candidate Overview
+                    </h4>
+                    <p className="text-[11px] font-mono text-[#B8CCD5]">SLIIT • Computer Science</p>
+                  </div>
+                </div>
+
+                <div className="space-y-2.5 text-xs">
+                  <div className="flex items-center justify-between py-1 border-b border-white/5">
+                    <span className="text-[#B8CCD5] font-medium">Name:</span>
+                    <span className="font-semibold text-[#F8FAFC]">{personalInfo.name}</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-white/5">
+                    <span className="text-[#B8CCD5] font-medium">Profile:</span>
+                    <span className="font-semibold text-[#F8FAFC] text-right">{personalInfo.subtitle}</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-white/5">
+                    <span className="text-[#B8CCD5] font-medium">Institution:</span>
+                    <span className="font-semibold text-[#49E3A1]">SLIIT (Y3S1)</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-white/5">
+                    <span className="text-[#B8CCD5] font-medium">Location:</span>
+                    <span className="font-semibold text-[#F8FAFC]">{personalInfo.location}</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-1 gap-1">
+                    <span className="text-[#B8CCD5] font-medium">Email:</span>
+                    <a
+                      href={`mailto:${personalInfo.email}`}
+                      className="text-[#49E3A1] hover:underline break-all font-mono text-[11px]"
+                    >
+                      {personalInfo.email}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Core Focus Areas */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-mono font-bold text-[#49E3A1] uppercase tracking-wider">
+                    Core Focus Areas
+                  </h4>
+                  <a
+                    href="#skills"
+                    className="text-xs font-semibold text-[#49E3A1] hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>Full Skills</span>
+                    <i className="bi bi-arrow-right text-[10px]" />
+                  </a>
+                </div>
 
                 <div className="space-y-2">
-                  {skillsData.softSkills.map((attr, idx) => (
+                  {coreFocusAreas.map((area) => (
                     <div
-                      key={idx}
-                      className="flex items-center gap-2.5 p-2.5 rounded-2xl bg-[#051521]/50 border border-white/10 hover:border-[#66d8ee]/30 transition-colors"
+                      key={area.title}
+                      className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs hover:border-[#49E3A1]/30 transition-colors"
                     >
-                      <span className="w-2 h-2 rounded-full bg-[#49e3a1] shrink-0"></span>
-                      <span className="text-xs sm:text-sm text-slate-200 font-medium">
-                        {attr}
-                      </span>
+                      <span className="font-semibold text-[#F8FAFC] block">{area.title}</span>
+                      <span className="text-[#D5E2E8] mt-0.5 block">{area.desc}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Languages Card */}
-            <div className="ocean-glass rounded-3xl p-6">
-              <h3 className="text-base sm:text-lg font-bold text-white mb-1">
-                Communication &amp; Languages
-              </h3>
-              <p className="text-xs text-slate-400 font-mono mb-3.5">
-                Linguistic versatility for agile team collaboration
-              </p>
+            {/* Right Column: Narrative Bio */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+              <div>
+                <div className="relative mb-6">
+                  <span className="text-xs font-mono text-[#49E3A1] uppercase tracking-wider block mb-1">
+                    01 // BIOGRAPHY
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight pb-3 border-b border-white/10">
+                    About me
+                  </h3>
+                  <div className="absolute -bottom-[1px] left-0 w-16 h-[2px] bg-[#49E3A1]" />
+                </div>
 
-              <div className="grid grid-cols-3 gap-2">
-                {skillsData.spokenLanguages.map((lang, idx) => (
-                  <div
-                    key={idx}
-                    className="p-2.5 sm:p-3 rounded-2xl bg-[#051521]/60 border border-white/10 text-center flex flex-col items-center justify-center min-h-[76px]"
-                  >
-                    <div className="text-sm font-bold text-white">{lang.language}</div>
-                    <div className="text-[11px] text-[#66d8ee] font-mono mt-1 leading-tight text-center">
-                      {lang.proficiency}
-                    </div>
+                <div className="space-y-4 text-[#D5E2E8] text-sm sm:text-base leading-relaxed font-sans">
+                  <p>
+                    I am a dedicated Computer Science undergraduate currently in Year 3, Semester 1 at the{' '}
+                    <strong className="text-[#F8FAFC] font-semibold">
+                      Sri Lanka Institute of Information Technology (SLIIT)
+                    </strong>
+                    . My academic and practical background spans advanced software engineering, distributed systems, database management, and intelligent systems.
+                  </p>
+                  <p>
+                    Throughout my academic journey, I have led and contributed to complex technical projects—from designing multi-stage automated GitHub Actions CI pipelines with baseline code quality gates and coverage reporting, to developing full-stack applications with React, Java Spring Boot, and ASP.NET Core, and engineering physics interactions in Unity 6.
+                  </p>
+                  <p>
+                    I take pride in writing structured, maintainable code, verifying edge cases, and collaborating constructively in team environments. With a 7-year background on the Student Prefect Board and 5 years on the IT Club executive board at Richmond College, Galle, I bring proven leadership, integrity, and proactive communication to engineering teams.
+                  </p>
+                </div>
+
+                {/* Spoken Languages */}
+                <div className="mt-6 pt-5 border-t border-white/10">
+                  <h4 className="text-xs font-mono font-semibold text-[#49E3A1] uppercase tracking-wider mb-2.5">
+                    Languages
+                  </h4>
+                  <div className="flex flex-wrap gap-2.5">
+                    {spokenLanguages.map((lang) => (
+                      <div
+                        key={lang.language}
+                        className="text-xs px-3.5 py-1.5 rounded-full bg-white/5 text-[#F8FAFC] border border-white/10"
+                      >
+                        <span className="font-semibold text-[#49E3A1]">{lang.language}: </span>
+                        <span className="text-[#D5E2E8]">{lang.proficiency}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-6 border-t border-white/10 flex flex-wrap items-center gap-3">
+                <a
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-glass-action inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                >
+                  <i className="bi bi-download" />
+                  <span>Download Curriculum Vitae</span>
+                </a>
+
+                <a
+                  href="#skills"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-card text-[#F8FAFC] hover:border-[#49E3A1]/50 text-xs sm:text-sm font-medium transition-colors cursor-pointer"
+                >
+                  <span>Explore Technical Skills</span>
+                  <i className="bi bi-arrow-right text-xs" />
+                </a>
               </div>
             </div>
 
           </div>
-
         </div>
-
       </div>
     </section>
   )
