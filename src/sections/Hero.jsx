@@ -6,12 +6,36 @@ export default function Hero() {
   const [interestIndex, setInterestIndex] = useState(0)
   const [displayedText, setDisplayedText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    try {
+      return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    } catch {
+      return false
+    }
+  })
 
   const interests = personalInfo.internshipInterests
   const cvUrl = `${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`
 
+  // Detect reduced-motion preference changes
   useEffect(() => {
-    const currentInterest = interests[interestIndex]
+    try {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      const handleChange = (e) => {
+        setPrefersReducedMotion(e.matches)
+      }
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
+    } catch {
+      // Browser environment fallback
+    }
+  }, [])
+
+  // Typing / Rotating effect for internship interests
+  useEffect(() => {
+    if (prefersReducedMotion) return
+
+    const currentInterest = interests[interestIndex] || ''
     const typingSpeed = isDeleting ? 35 : 75
     const pauseTime = 1900
 
@@ -34,183 +58,173 @@ export default function Hero() {
     }
 
     return () => clearTimeout(timer)
-  }, [displayedText, isDeleting, interestIndex, interests])
+  }, [displayedText, isDeleting, interestIndex, interests, prefersReducedMotion])
+
+  const activeInterestText = prefersReducedMotion
+    ? (interests[0] || 'Software Engineering')
+    : displayedText
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen pt-28 pb-16 lg:py-0 flex items-center justify-center bg-section-main overflow-hidden text-left"
+      className="relative min-h-screen pt-28 sm:pt-32 lg:pt-28 pb-16 lg:pb-16 flex items-center justify-center bg-section-main overflow-hidden w-full max-w-full text-left"
     >
       <div id="top" className="absolute top-0" />
-      {/* Ambient Subtle Breathing Glow Orbs */}
-      <div className="absolute top-12 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-[#49E3A1]/15 via-[#07503F]/12 to-[#0A323B]/10 rounded-full blur-3xl pointer-events-none -z-10 animate-orb" />
-      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-gradient-to-bl from-[#07503F]/15 via-[#49E3A1]/10 to-[#072438]/20 rounded-full blur-3xl pointer-events-none -z-10 animate-orb" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12">
+      {/* Ambient Breathing Glow Orbs */}
+      <div className="absolute top-12 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-[#67D4ED]/10 via-[#162338]/20 to-[#101B2D]/10 rounded-full blur-3xl pointer-events-none -z-10 animate-orb" />
+      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-gradient-to-bl from-[#162338]/20 via-[#67D4ED]/08 to-[#0B1220]/25 rounded-full blur-3xl pointer-events-none -z-10 animate-orb" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-8 sm:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
-          {/* Left Column: Introductions, Typography & CTAs */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left space-y-6">
-            
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 shadow-sm">
+
+          {/* Left Column: Introductions, Typography & Actions */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left space-y-6 max-w-full">
+
+            {/* Compact Status Indicator */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#162338]/60 border border-[#2A3B52] shadow-xs">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#49E3A1] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#49E3A1]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
               </span>
-              <span className="text-xs font-mono text-[#D5E2E8] tracking-wide font-medium">
+              <span className="text-xs font-mono text-[#CBD5E1] font-medium tracking-wide">
                 {personalInfo.status}
               </span>
             </div>
 
             {/* Main Headline Block */}
-            <div className="space-y-2">
-              <p className="font-mono text-[#49E3A1] text-xs sm:text-sm uppercase tracking-widest font-semibold">
-                {personalInfo.subtitle}
+            <div className="space-y-2 max-w-full">
+              <p className="font-mono text-[#67D4ED] text-xs sm:text-sm uppercase tracking-widest font-semibold">
+                {personalInfo.role}
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F8FAFC] leading-tight">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F1F5F9] leading-[1.12] break-words">
                 {personalInfo.name}
               </h1>
 
-              {/* Dynamic Rotating Internship Interests */}
-              <div className="min-h-[2rem] flex items-center gap-2 text-base sm:text-xl font-semibold">
+              {/* Dynamic Rotating Internship Interests with reserved layout space */}
+              <div className="min-h-[2.25rem] sm:min-h-[2.5rem] flex items-center flex-wrap gap-x-2 gap-y-1">
                 <span
-                  className="text-[#D5E2E8] font-mono text-xs sm:text-sm uppercase tracking-wide"
-                  style={{ color: '#D5E2E8' }}
+                  className="text-[#CBD5E1] font-mono text-xs sm:text-sm uppercase tracking-wider font-medium select-none"
+                  style={{ color: '#CBD5E1' }}
                 >
-                  Targeting:
+                  TARGETING:
                 </span>
                 <span
-                  className="text-[#66D8EE] font-semibold"
-                  style={{ color: '#66D8EE' }}
+                  className="text-[#67D4ED] font-semibold text-base sm:text-xl tracking-tight inline-flex items-center min-w-0 sm:min-w-[280px]"
+                  style={{ color: '#67D4ED' }}
+                  aria-live="polite"
+                  aria-atomic="true"
                 >
-                  {displayedText}
-                  <span
-                    className="inline-block ml-0.5 text-[#66D8EE] font-mono animate-pulse"
-                    style={{ color: '#66D8EE' }}
-                  >
-                    |
-                  </span>
+                  {activeInterestText}
+                  {!prefersReducedMotion && (
+                    <span
+                      className="inline-block ml-0.5 text-[#67D4ED] font-mono animate-pulse"
+                      style={{ color: '#67D4ED' }}
+                      aria-hidden="true"
+                    >
+                      |
+                    </span>
+                  )}
                 </span>
               </div>
             </div>
 
-            {/* Bio Summary */}
-            <p className="text-[#D5E2E8] text-sm sm:text-base leading-relaxed max-w-xl font-normal font-sans">
-              Undergraduate at <strong className="text-[#F8FAFC] font-semibold">SLIIT</strong> (Year 3, Semester 1) with focused academic training across software architecture, test automation, and distributed systems. Actively seeking software engineering internship opportunities.
+            {/* Concise Introduction */}
+            <p className="text-[#CBD5E1] text-base sm:text-lg leading-relaxed max-w-xl font-normal font-sans">
+              I’m a Computer Science undergraduate at <span className="text-[#F1F5F9] font-semibold">SLIIT</span>, building web applications and exploring software quality and cloud deployment through academic team projects.
             </p>
 
-            {/* Quick Action Buttons */}
+            {/* Main Action Buttons & Quieter Contact Link */}
             <div className="flex flex-wrap items-center gap-3 pt-1 w-full sm:w-auto">
+              {/* Primary Action 1: View Projects */}
               <a
                 href="#portfolio"
-                className="btn-glass-action inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                className="btn-glass-action inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-full font-semibold text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
-                <span>Explore Projects</span>
+                <span>View Projects</span>
                 <i className="bi bi-arrow-down-short text-base" />
               </a>
 
+              {/* Primary Action 2: Download CV */}
               <a
                 href={cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full glass-card text-[#F8FAFC] font-medium text-xs sm:text-sm hover:border-[#49E3A1]/50 hover:text-[#49E3A1] transition-all cursor-pointer shadow-sm"
+                className="btn-glass-action inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 title="Download Official CV (PDF)"
               >
-                <i className="bi bi-file-earmark-pdf text-[#49E3A1]" />
+                <i className="bi bi-file-earmark-pdf text-sm" />
                 <span>Download CV</span>
               </a>
 
+              {/* Quieter Contact Link */}
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full glass-card text-[#D5E2E8] font-medium text-xs sm:text-sm hover:border-[#49E3A1]/50 hover:text-[#F8FAFC] transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-[#CBD5E1] hover:text-[#67D4ED] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#67D4ED] rounded-lg group"
               >
-                <i className="bi bi-envelope text-[#49E3A1]" />
-                <span>Get in Touch</span>
+                <span>Contact</span>
+                <i className="bi bi-arrow-up-right text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
 
-            {/* Quick Social & Info Links Strip */}
-            <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-white/10 w-full">
+            {/* Compact Secondary Links Strip */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-3 border-t border-[#2A3B52] w-full text-xs text-[#CBD5E1]">
+              <span className="font-mono text-[#94A3B8] text-[11px] uppercase tracking-wider">Connect:</span>
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs text-[#D5E2E8] hover:text-[#F8FAFC] hover:border-[#49E3A1]/50 transition-colors"
+                className="inline-flex items-center gap-1.5 hover:text-[#67D4ED] transition-colors"
+                aria-label="GitHub Profile"
               >
-                <i className="bi bi-github text-[#49E3A1]" />
-                <span>GitHub Profile</span>
+                <i className="bi bi-github text-sm" />
+                <span>GitHub</span>
               </a>
+
+              <span className="text-white/20 select-none">•</span>
 
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs text-[#D5E2E8] hover:text-[#F8FAFC] hover:border-[#49E3A1]/50 transition-colors"
+                className="inline-flex items-center gap-1.5 hover:text-[#67D4ED] transition-colors"
+                aria-label="LinkedIn Profile"
               >
-                <i className="bi bi-linkedin text-[#49E3A1]" />
-                <span>LinkedIn Profile</span>
+                <i className="bi bi-linkedin text-sm" />
+                <span>LinkedIn</span>
               </a>
 
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-card text-xs font-mono text-[#D5E2E8]">
-                <i className="bi bi-geo-alt text-[#49E3A1]" />
+              <span className="text-white/20 select-none">•</span>
+
+              <span className="inline-flex items-center gap-1 text-[#94A3B8] font-mono text-[11px]">
+                <i className="bi bi-geo-alt text-xs text-[#67D4ED]" />
                 <span>{personalInfo.location}</span>
               </span>
             </div>
 
           </div>
 
-          {/* Right Column: Visual Portrait Showcase */}
+          {/* Right Column: Simplified Portrait Showcase */}
           <div className="lg:col-span-5 w-full flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-sm">
-              
-              {/* Soft Ambient Glow */}
-              <div className="absolute -inset-1.5 bg-gradient-to-tr from-[#49E3A1]/15 via-[#07503F]/15 to-transparent rounded-3xl blur-xl opacity-80 pointer-events-none" />
+            <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm">
 
-              <div className="relative rounded-3xl glass-card p-4 shadow-2xl space-y-3.5">
-                
-                {/* Photo Frame */}
-                <div className="relative rounded-2xl overflow-hidden border border-white/15 aspect-[4/4.5] group bg-[#071D2D]">
+              {/* Soft Ambient Glow */}
+              <div className="absolute -inset-1.5 bg-gradient-to-tr from-[#67D4ED]/10 via-[#162338]/20 to-[#101B2D]/10 rounded-3xl blur-xl opacity-75 pointer-events-none" />
+
+              {/* Clean Framed Glass Card */}
+              <div className="relative rounded-3xl p-2.5 bg-[#162338]/60 border border-[#2A3B52] shadow-2xl backdrop-blur-sm">
+                <div className="relative rounded-2xl overflow-hidden aspect-[4/4.8] bg-[#0B1220]">
                   <img
                     src={profilePhoto}
                     alt={personalInfo.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]"
                   />
-                  
-                  {/* Subtle vignette gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071D2D] via-transparent to-transparent opacity-75 pointer-events-none" />
 
-                  {/* Badges on image */}
-                  <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between">
-                    <span className="px-2.5 py-1 rounded-full bg-[#071D2D]/90 backdrop-blur-md border border-white/15 text-[11px] font-mono text-[#49E3A1]">
-                      SLIIT • 3rd Year CS (Y3S1)
-                    </span>
-                    <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#071D2D]/90 backdrop-blur-md border border-[#49E3A1]/30 text-[11px] font-mono text-[#49E3A1]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#49E3A1] animate-pulse" />
-                      Active
-                    </span>
-                  </div>
+                  {/* Subtle bottom vignette to softly ground the photo */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220]/60 via-transparent to-transparent pointer-events-none" />
                 </div>
-
-                {/* Quick Info Strip */}
-                <div className="grid grid-cols-2 gap-2 text-center font-mono text-xs">
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                    <div className="text-base font-bold text-[#49E3A1]">6 Core</div>
-                    <div className="text-[10px] text-[#B8CCD5] uppercase mt-0.5">Projects Built</div>
-                  </div>
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                    <div className="text-base font-bold text-[#49E3A1]">7+ Yrs</div>
-                    <div className="text-[10px] text-[#B8CCD5] uppercase mt-0.5">Prefect &amp; Lead</div>
-                  </div>
-                </div>
-
-                {/* Footer Tag Strip */}
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between font-mono text-[11px]">
-                  <span className="text-[#D5E2E8]">Core Stack:</span>
-                  <span className="text-[#F8FAFC] font-semibold">Full-Stack • CI/CD • Cloud</span>
-                </div>
-
               </div>
+
             </div>
           </div>
 

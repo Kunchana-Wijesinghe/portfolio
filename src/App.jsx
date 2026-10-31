@@ -45,7 +45,7 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#071D2D] text-[#F8FAFC] flex flex-col font-sans selection:bg-[#66D8EE] selection:text-[#071D2D]">
+    <div className="min-h-screen bg-[#0B1220] text-[#F1F5F9] flex flex-col font-sans selection:bg-[#67D4ED] selection:text-[#0B1220]">
       {/* KW System Boot Intro Overlay */}
       {isIntroActive && (
         <IntroOverlay onComplete={handleIntroComplete} />
@@ -64,7 +64,7 @@ export default function App() {
         {/* Skip to main content accessibility link */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#66D8EE] focus:text-[#071D2D] focus:text-xs uppercase tracking-wider rounded-lg font-bold shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#67D4ED] focus:text-[#0B1220] focus:text-xs uppercase tracking-wider rounded-lg font-bold shadow-lg"
         >
           Skip to main content
         </a>

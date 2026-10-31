@@ -365,7 +365,7 @@ export const projectsData = [
     category: 'Cloud & Microservices',
     filterCategory: 'filter-cloud',
     badge: 'CSP Academic Team Project',
-    role: 'Backend Integration & Workflow Contributor',
+    role: 'DevOps (Sprint 1) · QA (Sprint 2) · Backlog Coordination (Sprint 3) · Development & Integration (Sprint 4)',
     featured: true,
     status: 'Completed',
     cardDescription:
@@ -373,12 +373,15 @@ export const projectsData = [
     detailedDescription:
       'Developed as an academic team project utilizing microservice architecture principles for restaurant operations. The platform integrates a modern React frontend with ASP.NET Core backend services and relational data stores to manage dining bookings and restaurant operations.',
     contributions: [
-      'Contributed to backend coordination and database schema verification for dining and reservation entities.',
-      'Assisted in validating authenticated reservation workflows and ensuring API contract compatibility with frontend components.',
-      'Collaborated within the team Git repository on issue troubleshooting, branch integration, and code verification.',
+      'Supported GitHub Actions build, test and deployment workflows, Git collaboration, and Docker-based development environments during Sprint 1.',
+      'Contributed to quality assurance activities during Sprint 2.',
+      'Organised Jira user stories, tasks, subtasks and story-point allocation during Sprint 3, and prepared documentation for the Sprint 4 handover.',
+      'Contributed to development, integration and debugging during Sprint 4, including backend configuration and deployment troubleshooting.',
+      'Investigated PayHere Sandbox configuration issues involving Azure deployment secrets and reviewed related payment configuration, security helpers and reservation-service tests.',
+      'Prepared DevOps handover documentation and packaged the final source-code submission from the shared development branch.',
     ],
     note:
-      'Application architecture incorporates React, ASP.NET Core, MySQL, Docker, and Kafka; personal contribution was focused on backend workflow validation and reservation schema coordination.',
+      'Application architecture incorporates React, ASP.NET Core, MySQL, Docker, and Kafka; personal contribution was focused on DevOps support, quality assurance, sprint coordination, and integration.',
     technologies: [
       'ASP.NET Core',
       'C#',
@@ -544,7 +547,7 @@ export const leadershipData = [
     id: 'inventors',
     role: 'New Inventors Club Member',
     organization: 'Richmond College',
-    duration: 'Active Member',
+    duration: '2 Years',
     icon: 'bi-lightbulb',
     description:
       'Collaborated on innovative problem-solving projects, exploring scientific concepts and developing applied solutions for school exhibitions.',

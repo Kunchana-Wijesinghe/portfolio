@@ -115,12 +115,12 @@ export default function IntroOverlay({ onComplete }) {
     <aside
       aria-label="System Boot Introduction"
       aria-modal="true"
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#071D2D] select-none transition-opacity duration-300 p-4 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0B1220] select-none transition-opacity duration-300 p-4 ${
         isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Background Decorative Ambient Radial Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(77,211,171,0.12),transparent_65%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(103,212,237,0.10),transparent_65%)] pointer-events-none" />
 
       {/* Top Bar: Skip Intro Button */}
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30">
@@ -128,7 +128,7 @@ export default function IntroOverlay({ onComplete }) {
           ref={skipButtonRef}
           type="button"
           onClick={handleDismiss}
-          className="px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 text-xs font-mono text-[#D5E2E8] hover:text-[#F8FAFC] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#49E3A1]"
+          className="px-4 py-2 rounded-full border border-[#2A3B52] bg-[#162338]/60 hover:bg-[#162338] text-xs font-mono text-[#CBD5E1] hover:text-[#F1F5F9] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#67D4ED]"
           aria-label="Skip Introduction and proceed to portfolio"
         >
           <span>Skip Intro ⏭</span>
@@ -144,8 +144,8 @@ export default function IntroOverlay({ onComplete }) {
            ========================================================================= */}
         <div className="flex flex-col items-center text-center">
           {/* Circular Profile Portrait */}
-          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-[#49E3A1] shadow-[0_0_24px_rgba(73,227,161,0.35)] overflow-hidden bg-[#071D2D] p-0.5 transition-all duration-500">
-            <div className="w-full h-full rounded-full overflow-hidden bg-[#071D2D] flex items-center justify-center">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-[#67D4ED] shadow-[0_0_24px_rgba(103,212,237,0.35)] overflow-hidden bg-[#0B1220] p-0.5 transition-all duration-500">
+            <div className="w-full h-full rounded-full overflow-hidden bg-[#0B1220] flex items-center justify-center">
               {!imgFailed ? (
                 <img
                   src={profilePhoto}
@@ -154,7 +154,7 @@ export default function IntroOverlay({ onComplete }) {
                   onError={() => setImgFailed(true)}
                 />
               ) : (
-                <span className="font-extrabold text-2xl font-mono tracking-wider text-[#49E3A1]">
+                <span className="font-extrabold text-2xl font-mono tracking-wider text-[#67D4ED]">
                   KW
                 </span>
               )}
@@ -162,12 +162,12 @@ export default function IntroOverlay({ onComplete }) {
           </div>
 
           {/* Full Name */}
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#F8FAFC] tracking-tight leading-tight mt-3">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#F1F5F9] tracking-tight leading-tight mt-3">
             {personalInfo.name}
           </h2>
 
           {/* Undergraduate Subtitle */}
-          <p className="text-xs sm:text-sm font-mono text-[#D5E2E8] mt-0.5 tracking-wide">
+          <p className="text-xs sm:text-sm font-mono text-[#CBD5E1] mt-0.5 tracking-wide">
             {personalInfo.subtitle}
           </p>
         </div>
@@ -229,7 +229,7 @@ export default function IntroOverlay({ onComplete }) {
               y1="80"
               x2="50"
               y2="29"
-              stroke={activeStep >= 1 ? '#49E3A1' : 'transparent'}
+              stroke={activeStep >= 1 ? '#67D4ED' : 'transparent'}
               strokeWidth="2"
               filter={activeStep >= 1 ? 'url(#circuit-glow)' : undefined}
               className="transition-all duration-300"
@@ -241,7 +241,7 @@ export default function IntroOverlay({ onComplete }) {
               y1="80"
               x2="310"
               y2="29"
-              stroke={activeStep >= 2 ? '#49E3A1' : 'transparent'}
+              stroke={activeStep >= 2 ? '#67D4ED' : 'transparent'}
               strokeWidth="2"
               filter={activeStep >= 2 ? 'url(#circuit-glow)' : undefined}
               className="transition-all duration-300"
@@ -253,7 +253,7 @@ export default function IntroOverlay({ onComplete }) {
               y1="80"
               x2="310"
               y2="131"
-              stroke={activeStep >= 3 ? '#49E3A1' : 'transparent'}
+              stroke={activeStep >= 3 ? '#67D4ED' : 'transparent'}
               strokeWidth="2"
               filter={activeStep >= 3 ? 'url(#circuit-glow)' : undefined}
               className="transition-all duration-300"
@@ -265,7 +265,7 @@ export default function IntroOverlay({ onComplete }) {
               y1="80"
               x2="50"
               y2="131"
-              stroke={activeStep >= 4 ? '#49E3A1' : 'transparent'}
+              stroke={activeStep >= 4 ? '#67D4ED' : 'transparent'}
               strokeWidth="2"
               filter={activeStep >= 4 ? 'url(#circuit-glow)' : undefined}
               className="transition-all duration-300"
@@ -277,17 +277,17 @@ export default function IntroOverlay({ onComplete }) {
             <div
               className={`w-7 h-7 rounded-full border transition-all duration-500 flex items-center justify-center ${
                 activeStep >= 1
-                  ? 'border-[#49E3A1] bg-[#07503F]/90 shadow-[0_0_12px_rgba(73,227,161,0.6)]'
-                  : 'border-white/15 bg-white/5'
+                  ? 'border-[#67D4ED] bg-[#162338] shadow-[0_0_12px_rgba(103,212,237,0.6)]'
+                  : 'border-[#2A3B52] bg-[#162338]/40'
               }`}
             >
               <div
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   activeStep >= 4
-                    ? 'bg-[#49E3A1] scale-125 shadow-[0_0_8px_#49E3A1]'
+                    ? 'bg-[#67D4ED] scale-125 shadow-[0_0_8px_#67D4ED]'
                     : activeStep >= 1
-                    ? 'bg-[#49E3A1]'
-                    : 'bg-[#B8CCD5]/60'
+                    ? 'bg-[#67D4ED]'
+                    : 'bg-[#94A3B8]/60'
                 }`}
               />
             </div>
@@ -306,15 +306,15 @@ export default function IntroOverlay({ onComplete }) {
                 <div
                   className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-sm border transition-all duration-300 ${
                     isNodeActive
-                      ? 'bg-[#07503F] text-[#49E3A1] border-[#49E3A1] shadow-[0_0_14px_rgba(73,227,161,0.45)] scale-105'
-                      : 'bg-white/5 text-[#B8CCD5] border-white/15'
+                      ? 'bg-[#162338] text-[#67D4ED] border-[#67D4ED] shadow-[0_0_14px_rgba(103,212,237,0.45)] scale-105'
+                      : 'bg-[#162338]/60 text-[#94A3B8] border-[#2A3B52]'
                   }`}
                 >
                   <i className={`bi ${node.icon}`} />
                 </div>
                 <span
                   className={`text-[10px] font-mono tracking-wider uppercase mt-1 transition-colors duration-200 ${
-                    isNodeActive ? 'text-[#49E3A1] font-bold' : 'text-[#B8CCD5] font-medium'
+                    isNodeActive ? 'text-[#67D4ED] font-bold' : 'text-[#94A3B8] font-medium'
                   }`}
                 >
                   {node.name}
@@ -330,13 +330,13 @@ export default function IntroOverlay({ onComplete }) {
            ========================================================================= */}
         <div className="mt-5 sm:mt-6 min-h-[2.5rem] flex flex-col items-center justify-center text-center px-4 z-10">
           {activeStep < 5 ? (
-            <div className="flex items-center gap-2 font-mono text-xs text-[#D5E2E8]">
-              <span className="w-2 h-2 rounded-full bg-[#49E3A1] animate-pulse" />
+            <div className="flex items-center gap-2 font-mono text-xs text-[#CBD5E1]">
+              <span className="w-2 h-2 rounded-full bg-[#67D4ED] animate-pulse" />
               <span>KW System Boot: Initializing modules...</span>
             </div>
           ) : (
             <div className="text-center">
-              <p className="text-base sm:text-lg font-mono font-bold text-[#49E3A1] tracking-wide drop-shadow-[0_0_10px_rgba(73,227,161,0.6)]">
+              <p className="text-base sm:text-lg font-mono font-bold text-[#67D4ED] tracking-wide drop-shadow-[0_0_10px_rgba(103,212,237,0.5)]">
                 Welcome to my portfolio.
               </p>
             </div>

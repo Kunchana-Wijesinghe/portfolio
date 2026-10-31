@@ -4,64 +4,60 @@
   --font-sans: 'Onest', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --color-base: #071D2D;
-  --color-accent: #49E3A1;
-  --color-accent-hover: #5CF2B0;
+  --color-base: #0B1220;
+  --color-accent: #67D4ED;
+  --color-accent-hover: #A5ECF9;
 
   /* Semantic Contrast Tokens */
-  --color-text-primary: #F8FAFC;
-  --color-text-secondary: #D5E2E8;
-  --color-text-muted: #B8CCD5;
-  --color-text-accent: #49E3A1;
-  --color-text-on-accent: #071D2D;
+  --color-text-primary: #F1F5F9;
+  --color-text-body: #CBD5E1;
+  --color-text-secondary: #94A3B8;
+  --color-text-accent: #67D4ED;
+  --color-text-on-accent: #0B1220;
 }
 
 :root {
   --default-font: "Onest", system-ui, -apple-system, sans-serif;
   --mono-font: "JetBrains Mono", monospace;
 
-  --bg-base: #071D2D;
-  --bg-main-grad: linear-gradient(145deg, #072438 0%, #0A323B 58%, #07503F 100%);
-  --bg-alt-grad: linear-gradient(145deg, #061F31 0%, #092F39 58%, #064735 100%);
-  --bg-glow: radial-gradient(circle at 90% 8%, rgba(77, 211, 171, 0.12), transparent 27%);
+  /* Shared Theme Tokens */
+  --bg-main: #0B1220;
+  --bg-alt: #101B2D;
+  --surface-card: #162338;
+  --border-color: #2A3B52;
 
-  --surface-glass: rgba(255, 255, 255, 0.045);
-  --border-glass: rgba(255, 255, 255, 0.14);
-  --border-glass-hover: rgba(73, 227, 161, 0.45);
-
-  --navbar-bg: rgba(11, 32, 45, 0.48);
-  --navbar-border: rgba(255, 255, 255, 0.16);
-
-  /* Semantic Contrast Tokens */
-  --text-primary: #F8FAFC;
-  --text-secondary: #D5E2E8;
-  --text-muted: #B8CCD5;
-  --text-accent: #49E3A1;
-  --text-on-accent: #071D2D;
+  --text-primary: #F1F5F9;
+  --text-body: #CBD5E1;
+  --text-secondary: #94A3B8;
+  --accent-cyan: #67D4ED;
+  --accent-green: #10B981; /* Status indicator only */
 }
 
 /* Global resets & typography */
 html {
   scroll-behavior: smooth;
-  background-color: #071D2D;
-  color: var(--text-primary);
+  background-color: #0B1220;
+  color: #F1F5F9;
   font-family: var(--default-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  max-width: 100vw;
 }
 
 body {
-  color: var(--text-primary);
-  background-color: #071D2D;
+  color: #CBD5E1;
+  background-color: #0B1220;
   font-family: var(--default-font);
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100vw;
   min-height: 100vh;
 }
 
 p {
-  color: var(--text-secondary);
+  color: #CBD5E1;
 }
 
 span, li, a, button, input, textarea {
@@ -69,25 +65,25 @@ span, li, a, button, input, textarea {
 }
 
 ::selection {
-  background-color: #49E3A1;
-  color: #071D2D;
+  background-color: #67D4ED;
+  color: #0B1220;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary);
+  color: #F1F5F9;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-/* Shared section backgrounds with subtle ambient glow */
+/* Shared section backgrounds with subtle navy/blue gradients */
 .bg-section-main {
-  background: radial-gradient(circle at 90% 8%, rgba(77, 211, 171, 0.12), transparent 27%),
-              linear-gradient(145deg, #072438 0%, #0A323B 58%, #07503F 100%);
+  background: radial-gradient(circle at 90% 8%, rgba(103, 212, 237, 0.08), transparent 28%),
+              linear-gradient(145deg, #0B1220 0%, #0E1726 50%, #101B2D 100%);
 }
 
 .bg-section-alt {
-  background: radial-gradient(circle at 90% 8%, rgba(77, 211, 171, 0.12), transparent 27%),
-              linear-gradient(145deg, #061F31 0%, #092F39 58%, #064735 100%);
+  background: radial-gradient(circle at 90% 8%, rgba(103, 212, 237, 0.06), transparent 28%),
+              linear-gradient(145deg, #101B2D 0%, #121E32 50%, #0B1220 100%);
 }
 
 /* Section Watermark Headings: subtle decorative background text */
@@ -99,54 +95,104 @@ h1, h2, h3, h4, h5, h6 {
   font-size: clamp(3.5rem, 12vw, 10rem);
   font-weight: 900;
   letter-spacing: -0.05em;
-  color: rgba(77, 211, 171, 0.035);
+  color: rgba(103, 212, 237, 0.025);
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
   z-index: 0;
 }
 
-/* Floating Glass Nav (Apple-style pill) */
-.floating-glass-nav {
-  background: rgba(11, 32, 45, 0.48);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 10px 30px rgba(5, 18, 28, 0.45);
+/* Technical Capabilities Section-Scoped Icons */
+#capabilities .capability-icon {
+  color: #67D4ED;
+  -webkit-text-fill-color: #67D4ED;
+  opacity: 1;
 }
 
-/* Glass cards inspected from Nadeesha UI */
+/* Technical Skills Section-Scoped Icons */
+#skills .skill-category-icon,
+#skills .skill-chip-icon {
+  color: #67D4ED;
+  -webkit-text-fill-color: #67D4ED;
+  opacity: 1;
+}
+
+/* Resume Section-Scoped Icons & Details Marker */
+#resume .resume-header-icon {
+  color: #67D4ED;
+  -webkit-text-fill-color: #67D4ED;
+  opacity: 1;
+}
+
+#resume details summary::-webkit-details-marker {
+  display: none;
+}
+
+#resume details summary {
+  list-style: none;
+}
+
+/* Projects Section-Scoped GitHub Icons */
+#portfolio .project-github-icon {
+  color: #67D4ED;
+  -webkit-text-fill-color: #67D4ED;
+  opacity: 1;
+}
+
+/* Contact Section-Scoped Channel Icons */
+#contact .contact-channel-icon {
+  color: #67D4ED;
+  -webkit-text-fill-color: #67D4ED;
+  opacity: 1;
+}
+
+/* Floating Glass Nav */
+.floating-glass-nav {
+  background: rgba(11, 18, 32, 0.82);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid #2A3B52;
+  box-shadow: 0 8px 24px -4px rgba(5, 9, 16, 0.55), 0 2px 6px -1px rgba(5, 9, 16, 0.35);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .floating-glass-nav {
+    background: #0B1220;
+  }
+}
+
+/* Glass cards with Midnight Navy card surface (#162338) and border (#2A3B52) */
 .glass-card,
 .ocean-card,
 .ocean-glass {
-  background: rgba(255, 255, 255, 0.045);
+  background: rgba(22, 35, 56, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 8px 32px rgba(4, 18, 28, 0.25);
+  border: 1px solid #2A3B52;
+  box-shadow: 0 8px 32px rgba(5, 9, 16, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover,
 .ocean-card:hover,
 .ocean-glass:hover {
-  border-color: rgba(73, 227, 161, 0.45);
-  box-shadow: 0 12px 36px rgba(4, 18, 28, 0.35), 0 0 20px rgba(73, 227, 161, 0.12);
+  border-color: rgba(103, 212, 237, 0.45);
+  box-shadow: 0 12px 36px rgba(5, 9, 16, 0.45), 0 0 20px rgba(103, 212, 237, 0.10);
 }
 
-/* Opaque Solid Navy/Teal Surface for Modals */
+/* Opaque Solid Surface for Modals */
 .modal-surface {
-  background: #082638;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 24px 60px rgba(4, 18, 28, 0.7);
+  background: #162338;
+  border: 1px solid #2A3B52;
+  box-shadow: 0 24px 60px rgba(5, 9, 16, 0.85);
 }
 
-/* Subtle Outlined Glass Action Button (Restyled from bright green) */
+/* Subtle Outlined Glass Action Button */
 .btn-primary-green,
 .btn-glass-action {
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(102, 216, 238, 0.65);
-  color: #DDF7FC;
+  background-color: rgba(103, 212, 237, 0.05);
+  border: 1px solid rgba(103, 212, 237, 0.65);
+  color: #F1F5F9;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -157,31 +203,31 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary-green span,
 .btn-glass-action i,
 .btn-glass-action span {
-  color: #DDF7FC;
+  color: #F1F5F9;
 }
 
 .btn-primary-green:hover,
 .btn-glass-action:hover {
-  background-color: rgba(102, 216, 238, 0.10);
-  border-color: #66D8EE;
-  color: #DDF7FC;
-  box-shadow: 0 0 14px rgba(102, 216, 238, 0.22), 0 4px 20px rgba(0, 0, 0, 0.35);
+  background-color: rgba(103, 212, 237, 0.12);
+  border-color: #67D4ED;
+  color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(103, 212, 237, 0.22), 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .btn-primary-green:focus-visible,
 .btn-glass-action:focus-visible {
   outline: none;
-  background-color: rgba(102, 216, 238, 0.10);
-  border-color: #66D8EE;
-  color: #DDF7FC;
-  box-shadow: 0 0 0 2px #071D2D, 0 0 0 4px #66D8EE, 0 0 14px rgba(102, 216, 238, 0.25);
+  background-color: rgba(103, 212, 237, 0.12);
+  border-color: #67D4ED;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 2px #0B1220, 0 0 0 4px #67D4ED, 0 0 14px rgba(103, 212, 237, 0.25);
 }
 
 /* Ambient Breathing Glow Orbs */
 @keyframes orbBreathe {
-  0% { transform: scale(1) translate(0, 0); opacity: 0.22; }
-  50% { transform: scale(1.08) translate(10px, -8px); opacity: 0.35; }
-  100% { transform: scale(1) translate(0, 0); opacity: 0.22; }
+  0% { transform: scale(1) translate(0, 0); opacity: 0.18; }
+  50% { transform: scale(1.08) translate(10px, -8px); opacity: 0.28; }
+  100% { transform: scale(1) translate(0, 0); opacity: 0.18; }
 }
 
 .animate-orb {
@@ -228,6 +274,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
   .animate-orb,
   .animate-orbit-spin,
   .animate-orbit-spin-reverse,
@@ -243,15 +292,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #071D2D;
+  background: #0B1220;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
+  background: #2A3B52;
   border-radius: 9999px;
-  border: 2px solid #071D2D;
+  border: 2px solid #0B1220;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #49E3A1;
+  background: #67D4ED;
 }

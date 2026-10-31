@@ -1,60 +1,77 @@
-import { technicalCapabilities } from '../data/portfolioData'
-
 export default function Capabilities() {
+  const capabilities = [
+    {
+      id: 'frontend',
+      title: 'Frontend Development',
+      icon: 'bi-window-fullscreen',
+      description: 'Build responsive interfaces and connect user workflows to backend APIs.',
+    },
+    {
+      id: 'backend',
+      title: 'Backend Development',
+      icon: 'bi-server',
+      description: 'Develop REST APIs and integrate application logic with databases.',
+    },
+    {
+      id: 'quality',
+      title: 'Quality & Test Automation',
+      icon: 'bi-shield-check',
+      description: 'Integrate test suites, code quality checks and coverage reporting into CI pipelines.',
+    },
+    {
+      id: 'cloud',
+      title: 'Cloud & DevOps',
+      icon: 'bi-cloud-arrow-up',
+      description: 'Work with containerised applications, deployment workflows and cloud environments.',
+    },
+    {
+      id: 'databases',
+      title: 'Databases & Distributed Systems',
+      icon: 'bi-database',
+      description: 'Work with relational data and explore reliable transactions across distributed services.',
+    },
+  ]
+
   return (
-    <section id="capabilities" className="py-24 sm:py-32 relative bg-section-main border-t border-white/10 overflow-hidden">
+    <section id="capabilities" className="py-24 sm:py-32 relative bg-section-main border-t border-[#2A3B52] overflow-hidden text-left">
       {/* Background Watermark */}
       <div className="section-watermark">CAPABILITIES</div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#49E3A1] tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-white/5 border border-white/15">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#49E3A1]" />
-            <span>02 / Core Engineering Domains</span>
+        <div className="text-center mb-14 sm:mb-16">
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#67D4ED] tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-[#162338]/60 border border-[#2A3B52]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#67D4ED]" />
+            <span>02 / Technical Capabilities</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F8FAFC] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F1F5F9] tracking-tight">
             Technical Capabilities
           </h2>
-          <p className="text-sm sm:text-base text-[#D5E2E8] max-w-2xl mx-auto mt-4 leading-relaxed">
+          <p className="text-sm sm:text-base text-[#CBD5E1] max-w-2xl mx-auto mt-4 leading-relaxed">
             Applied competencies and engineering domains developed across university coursework and verified projects
           </p>
         </div>
 
-        {/* Balanced Capabilities Grid (3 in first row, 2 centered in second row on desktop) */}
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
-          {technicalCapabilities.map((capability) => (
+        {/* Vertically Stacked Continuous List */}
+        <div className="divide-y divide-[#2A3B52] border-y border-[#2A3B52]">
+          {capabilities.map((capability) => (
             <div
               key={capability.id}
-              className="glass-card rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between group text-center w-full md:w-[calc(50%-1.25rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md"
+              className="py-5 sm:py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline"
             >
-              <div>
-                {/* Icon Circle */}
-                <div className="w-14 h-14 rounded-2xl bg-white/5 text-[#49E3A1] flex items-center justify-center text-2xl mx-auto mb-5 border border-white/15 group-hover:scale-105 group-hover:border-[#49E3A1]/40 transition-all shadow-inner">
-                  <i className={`bi ${capability.icon}`} />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-[#F8FAFC] group-hover:text-[#49E3A1] transition-colors mb-3">
+              {/* Left on Desktop: Title & Icon */}
+              <div className="md:col-span-5 flex items-center gap-3">
+                <i className={`bi ${capability.icon} capability-icon text-base shrink-0`} />
+                <h3 className="text-base sm:text-lg font-bold text-[#F1F5F9] tracking-tight">
                   {capability.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-sm text-[#D5E2E8] leading-relaxed mb-6">
-                  {capability.description}
-                </p>
               </div>
 
-              {/* Skill Badges */}
-              <div className="flex flex-wrap justify-center gap-1.5 pt-4 border-t border-white/10 mt-auto">
-                {capability.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#D5E2E8] font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              {/* Right on Desktop / Below on Mobile: Description */}
+              <div className="md:col-span-7">
+                <p className="text-sm sm:text-base text-[#CBD5E1] leading-relaxed">
+                  {capability.description}
+                </p>
               </div>
             </div>
           ))}
