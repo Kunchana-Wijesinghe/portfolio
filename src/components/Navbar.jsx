@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { personalInfo } from '../data/portfolioData'
+import { handleCvDownload, CV_URL, CV_FILENAME } from '../utils/cv'
 
 const NAV_LINKS = [
   { name: 'About', href: '#about', id: 'about' },
@@ -14,7 +15,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const cvUrl = `${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,9 +96,11 @@ export default function Navbar() {
         {/* Right Action: Download CV Button */}
         <div className="hidden md:flex items-center shrink-0">
           <a
-            href={cvUrl}
+            href={CV_URL}
+            download={CV_FILENAME}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleCvDownload}
             className="btn-glass-action inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             title="Download Official CV (PDF)"
           >
@@ -147,10 +149,14 @@ export default function Navbar() {
           })}
           <div className="pt-2 border-t border-[#2A3B52]">
             <a
-              href={cvUrl}
+              href={CV_URL}
+              download={CV_FILENAME}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                setMobileMenuOpen(false)
+                handleCvDownload(e)
+              }}
               className="btn-glass-action w-full text-center py-2.5 text-xs font-semibold rounded-full flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <i className="bi bi-file-earmark-pdf" />

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import profilePhoto from '../assets/kunchana-profile.jpeg'
 import { personalInfo } from '../data/portfolioData'
+import { handleCvDownload, CV_URL, CV_FILENAME } from '../utils/cv'
 
 export default function KWOrbit({ isHidden, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,8 +13,6 @@ export default function KWOrbit({ isHidden, onNavigate }) {
   const triggerButtonRef = useRef(null)
   const panelRef = useRef(null)
   const firstActionRef = useRef(null)
-
-  const cvUrl = `${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`
 
   // Tab visibility detection to pause animations when tab is in background
   useEffect(() => {
@@ -258,9 +257,15 @@ export default function KWOrbit({ isHidden, onNavigate }) {
               <i className="bi bi-chevron-right text-xs text-[#94A3B8] group-hover:text-[#67D4ED] group-hover:translate-x-0.5 transition-all" />
             </button>
 
-            <button
-              type="button"
-              onClick={() => handleAction(cvUrl)}
+            <a
+              href={CV_URL}
+              download={CV_FILENAME}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                setIsOpen(false)
+                handleCvDownload(e)
+              }}
               className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#0B1220]/60 hover:bg-[#0B1220] border border-[#2A3B52] hover:border-[#67D4ED]/40 text-left transition-all group cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#67D4ED]"
             >
               <div className="flex items-center gap-2.5">
@@ -275,7 +280,7 @@ export default function KWOrbit({ isHidden, onNavigate }) {
                 </div>
               </div>
               <i className="bi bi-box-arrow-up-right text-xs text-[#94A3B8] group-hover:text-[#67D4ED] transition-colors" />
-            </button>
+            </a>
 
             <button
               type="button"

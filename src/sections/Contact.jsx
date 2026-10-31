@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { personalInfo } from '../data/portfolioData'
+import { handleCvDownload, CV_URL, CV_FILENAME } from '../utils/cv'
 
 export default function Contact() {
   const [copied, setCopied] = useState(false)
@@ -136,10 +137,11 @@ export default function Contact() {
                 </div>
 
                 <a
-                  href={`${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`}
-                  download="Kunchana_Wijesinghe_CV.pdf"
+                  href={CV_URL}
+                  download={CV_FILENAME}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  onClick={handleCvDownload}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#2A3B52] bg-[#162338]/60 hover:bg-[#162338] text-xs font-mono text-[#CBD5E1] hover:text-[#F1F5F9] hover:border-[#67D4ED]/50 transition-all shrink-0 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#67D4ED]"
                   title="Download / Open Official CV"
                 >

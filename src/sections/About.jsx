@@ -1,7 +1,7 @@
 import { personalInfo, spokenLanguages } from '../data/portfolioData'
+import { handleCvDownload, CV_URL, CV_FILENAME } from '../utils/cv'
 
 export default function About() {
-  const cvUrl = `${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`
 
   return (
     <section id="about" className="py-24 relative bg-section-alt border-t border-[#2A3B52] overflow-hidden text-left">
@@ -74,9 +74,11 @@ export default function About() {
           {/* 5. Action Buttons at Bottom */}
           <div className="mt-8 pt-6 border-t border-[#2A3B52] flex flex-wrap items-center gap-3">
             <a
-              href={cvUrl}
+              href={CV_URL}
+              download={CV_FILENAME}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleCvDownload}
               className="btn-glass-action inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <i className="bi bi-download" />

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { personalInfo } from '../data/portfolioData'
+import { handleCvDownload, CV_URL, CV_FILENAME } from '../utils/cv'
 import profilePhoto from '../assets/kunchana-profile.jpeg'
 
 export default function Hero() {
@@ -15,7 +16,6 @@ export default function Hero() {
   })
 
   const interests = personalInfo.internshipInterests
-  const cvUrl = `${import.meta.env.BASE_URL}Kunchana_Wijesinghe_CV.pdf`
 
   // Detect reduced-motion preference changes
   useEffect(() => {
@@ -147,9 +147,11 @@ export default function Hero() {
 
               {/* Primary Action 2: Download CV */}
               <a
-                href={cvUrl}
+                href={CV_URL}
+                download={CV_FILENAME}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleCvDownload}
                 className="btn-glass-action inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 title="Download Official CV (PDF)"
               >
