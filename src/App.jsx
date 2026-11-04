@@ -6,6 +6,7 @@ import Capabilities from './sections/Capabilities'
 import Skills from './sections/Skills'
 import Resume from './sections/Resume'
 import Projects from './sections/Projects'
+import Certifications from './sections/Certifications'
 import Contact from './sections/Contact'
 import IntroOverlay from './components/IntroOverlay'
 import KWOrbit from './components/KWOrbit'
@@ -21,7 +22,8 @@ export default function App() {
     }
   })
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false)
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false)
 
   const handleIntroComplete = useCallback(() => {
     setIsIntroActive(false)
@@ -58,7 +60,7 @@ export default function App() {
       */}
       <div
         id="portfolio-interactive-wrapper"
-        inert={isIntroActive ? '' : undefined}
+        inert={isIntroActive ? true : undefined}
         className="flex-1 flex flex-col"
       >
         {/* Skip to main content accessibility link */}
@@ -89,14 +91,17 @@ export default function App() {
           <Resume />
 
           {/* Projects / Portfolio */}
-          <Projects onModalStateChange={setIsModalOpen} />
+          <Projects onModalStateChange={setIsProjectModalOpen} />
+
+          {/* Certifications & Digital Credentials */}
+          <Certifications onModalStateChange={setIsCertModalOpen} />
 
           {/* Contact & Mega Footer */}
           <Contact />
         </main>
 
         {/* KW Orbit Floating Portfolio Navigator Companion */}
-        <KWOrbit isHidden={isIntroActive || isModalOpen} />
+        <KWOrbit isHidden={isIntroActive || isProjectModalOpen || isCertModalOpen} />
       </div>
     </div>
   )

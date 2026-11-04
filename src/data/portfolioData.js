@@ -1,6 +1,7 @@
 import cinnamonPipelineImg from '../assets/projects/cinnamon-pipeline.jpg'
 import facilityBreachImg from '../assets/projects/facility-breach.png'
 import cinnamonBistroImg from '../assets/projects/cinnamon-bistro-logo.png'
+import ibmCloudBadge from '../assets/certifications/ibm-cloud-computing-fundamentals.png'
 
 export const personalInfo = {
   name: 'Kunchana Wijesinghe',
@@ -264,7 +265,7 @@ export const projectsData = [
     category: 'Full-Stack & Web',
     filterCategory: 'filter-web',
     badge: 'Academic Team Project (4 Members)',
-    role: 'Full-Stack Developer & Integration Contributor',
+    role: 'Group Leader & Full-Stack Developer',
     featured: true,
     status: 'Completed',
     cardDescription:
@@ -272,9 +273,11 @@ export const projectsData = [
     detailedDescription:
       'Developed as a four-member academic team project, UniStay brings student and administrative boarding workflows into a unified platform. The system handles room listings, reservations, tenant management, and student service requests (maintenance, cleaning, food orders, and announcements). The application deployment utilized Railway and Netlify.',
     contributions: [
+      'Led the four-member academic team as Group Leader, coordinating architecture, milestones, and full-stack integration.',
       'Contributed to application architecture and full-stack integration across React frontend and Spring Boot backend.',
       'Implemented key user and administrative workflows for booking, service management, and notifications.',
       'Resolved critical backend configuration, Spring Security/JWT authorization, and MySQL database connection issues.',
+      'Deployed and configured the full-stack application using Railway (Spring Boot API & MySQL) and Netlify (React frontend).',
       'Participated actively in team code reviews, repository management, and API contract alignment.',
     ],
     technologies: [
@@ -302,8 +305,8 @@ export const projectsData = [
     subtitle: 'Academic Team Salon Management Project',
     category: 'Full-Stack & Web',
     filterCategory: 'filter-web',
-    badge: 'Academic Team Project (Group 11)',
-    role: 'Academic Team Project Contributor',
+    badge: 'Academic Team Project',
+    role: 'Academic Team Contributor',
     featured: false,
     status: 'Completed',
     cardDescription:
@@ -311,8 +314,9 @@ export const projectsData = [
     detailedDescription:
       'An academic team project developed to streamline salon appointment scheduling, service categorizations, staff allocation, and customer profile management.',
     contributions: [
-      'Collaborated as an academic team contributor in designing and structuring the application modules.',
-      'Assisted with frontend interface structuring, API consumption, and application testing.',
+      'Implemented appointment booking and customer booking history workflows.',
+      'Configured and executed AWS cloud deployment for the application.',
+      'Collaborated as an academic team contributor on frontend interface structuring, API consumption, and application testing.',
     ],
     technologies: [
       'React',
@@ -333,18 +337,18 @@ export const projectsData = [
     subtitle: 'Fault-Tolerant Atomic Transaction Processing Prototype',
     category: 'Distributed Systems',
     filterCategory: 'filter-distributed',
-    badge: 'Academic Team Project (Group 18)',
-    role: 'Concurrency Integration & Git Collaboration Lead',
-    featured: true,
+    badge: 'Academic Team Project',
+    role: 'Concurrency & Integration Contributor',
+    featured: false,
     status: 'Completed',
     cardDescription:
       'Distributed computing prototype demonstrating multi-node validation, concurrency control, and atomic transaction guarantees.',
     detailedDescription:
       'An academic team project exploring the principles of fault-tolerant distributed transaction processing. Built in Go (Golang), the system incorporates message safety validation, atomic transaction handling, and cross-node state verification.',
     contributions: [
-      'Contributed to concurrent feature integration and concurrent transaction routines in Go (Golang).',
-      'Structured and managed team branch workflows, code reviews, and version control coordination via Git.',
-      'Participated in testing atomic validation logic across simulated concurrent customer payment requests.',
+      'Implemented concurrency integration routines and atomic transaction logic in Go (Golang).',
+      'Coordinated Git branch workflows, repository standards, and peer code reviews across the team.',
+      'Conducted testing of atomic validation logic under simulated concurrent customer payment requests.',
     ],
     technologies: [
       'Go (Golang)',
@@ -365,7 +369,7 @@ export const projectsData = [
     category: 'Cloud & Microservices',
     filterCategory: 'filter-cloud',
     badge: 'CSP Academic Team Project',
-    role: 'DevOps (Sprint 1) · QA (Sprint 2) · Backlog Coordination (Sprint 3) · Development & Integration (Sprint 4)',
+    role: 'Group Leader | DevOps (Sprint 1) · QA (Sprint 2) · Backlog Coordination (Sprint 3) · Development & Integration (Sprint 4)',
     featured: true,
     status: 'Completed',
     cardDescription:
@@ -381,7 +385,7 @@ export const projectsData = [
       'Prepared DevOps handover documentation and packaged the final source-code submission from the shared development branch.',
     ],
     note:
-      'Application architecture incorporates React, ASP.NET Core, MySQL, Docker, and Kafka; personal contribution was focused on DevOps support, quality assurance, sprint coordination, and integration.',
+      'Application architecture incorporates React, ASP.NET Core, MySQL, Docker, and Kafka; served as Group Leader with personal focus on DevOps support, quality assurance, sprint coordination, and integration.',
     technologies: [
       'ASP.NET Core',
       'C#',
@@ -446,7 +450,7 @@ export const projectsData = [
     filterCategory: 'filter-games',
     badge: 'Academic Project • SE3032 & SE3062',
     role: 'Gameplay Interactions & Scene Integration Developer',
-    featured: true,
+    featured: false,
     status: 'Completed',
     cardDescription:
       '3D interactive game created in Unity 6 featuring physics-based door mechanisms, movable barricades, and player interaction arbitration.',
@@ -471,6 +475,67 @@ export const projectsData = [
     ],
     github: 'https://github.com/Kunchana-Wijesinghe/Interactive-3D-Shooting-Game-GV-IS',
     architecture: 'UNITY 6 ENGINE // C# EVENT SYSTEM // RIGIDBODY PHYSICS // SCENE INTEGRATION',
+  },
+]
+
+export const certificationsData = [
+  {
+    id: 'ibm-cloud-computing-fundamentals',
+    name: 'Cloud Computing Fundamentals',
+    issuer: 'IBM SkillsBuild',
+    recipient: 'Kunchana Wijesinghe',
+    issueDate: 'November 4, 2026',
+    issueDateShort: 'Nov 2026',
+    type: 'Digital Credential',
+    category: 'Cloud Computing',
+    badgeImage: ibmCloudBadge,
+    verificationUrl: 'https://www.credly.com/badges/67c57a27-1ced-4809-b9e8-d92c1e0d798c',
+    officialInfoUrl: 'https://www.credly.com/org/ibm-skillsbuild/badge/cloud-computing-fundamentals',
+    certificatePdf: null,
+    cardSummary:
+      'Foundational knowledge of cloud services, deployment models, containers, virtualization, and cloud security.',
+    overview:
+      'Earned the IBM SkillsBuild Cloud Computing Fundamentals digital credential, demonstrating foundational knowledge of cloud computing concepts and practical understanding developed through guided simulations.',
+    learningTopics: [
+      'Cloud services and infrastructure.',
+      'IaaS, PaaS, and SaaS.',
+      'Public, private, and hybrid cloud deployment models.',
+      'Virtualization, containers, and orchestration.',
+      'Cloud security and migration concepts.',
+      'Creating a container, deploying a web application, and reviewing security settings in a simulated environment.',
+    ],
+    earningRequirements: [
+      'Complete the prescribed IBM SkillsBuild Cloud Computing Fundamentals courses.',
+      'Pass graded quizzes and final assessments.',
+      'Complete the required practice simulations.',
+    ],
+    skills: [
+      'Cloud Computing',
+      'Cloud Infrastructure',
+      'Cloud Security',
+      'Containers',
+      'Docker',
+      'Virtualization',
+      'IaaS',
+      'PaaS',
+      'SaaS',
+      'Public Cloud',
+      'Private Cloud',
+      'Hybrid Cloud',
+    ],
+    cardSkills: ['Cloud Computing', 'Containers', 'Docker', 'Cloud Security'],
+  },
+]
+
+export const currentlyLearningData = [
+  {
+    id: 'ibm-web-development-fundamentals',
+    title: 'Web Development Fundamentals',
+    provider: 'IBM SkillsBuild',
+    status: 'In Progress',
+    description:
+      'Currently studying the fundamentals of website development, including web development languages, tools, and processes.',
+    url: 'https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC',
   },
 ]
 

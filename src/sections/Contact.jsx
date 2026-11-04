@@ -51,7 +51,7 @@ export default function Contact() {
               {/* Tag / Number */}
               <div className="inline-flex items-center gap-2 font-mono text-xs text-[#67D4ED] tracking-widest uppercase mb-4 px-3 py-1 rounded-full bg-[#162338]/60 border border-[#2A3B52]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#67D4ED]" />
-                <span>06 / CONTACT</span>
+                <span>07 / CONTACT</span>
               </div>
 
               {/* Availability Indicator */}
@@ -335,6 +335,11 @@ export default function Contact() {
                 <li>
                   <a href="#portfolio" className="hover:text-[#67D4ED] transition-colors">
                     Projects
+                  </a>
+                </li>
+                <li>
+                  <a href="#certifications" className="hover:text-[#67D4ED] transition-colors">
+                    Certifications
                   </a>
                 </li>
                 <li>

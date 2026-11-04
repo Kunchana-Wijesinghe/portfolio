@@ -23,3 +23,4 @@ export const handleCvDownload = (e) => {
   downloadLink.click()
   document.body.removeChild(downloadLink)
 }
+

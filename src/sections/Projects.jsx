@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef, useId, useCallback } from 'react'
 import { projectsData } from '../data/portfolioData'
 
+const FEATURED_ORDER = ['unistay', 'cinnamon-pipeline', 'cinnamon-bistro']
+const MORE_ORDER = ['salon-sanaru', 'distributed-payment', 'facility-breach']
+
 export default function Projects({ onModalStateChange }) {
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [showAllMore, setShowAllMore] = useState(false)
   const [activeModalProject, setActiveModalProject] = useState(null)
   const modalCloseBtnRef = useRef(null)
   const modalRef = useRef(null)
@@ -19,12 +23,12 @@ export default function Projects({ onModalStateChange }) {
   ]
 
   const cardRoleLabels = {
-    unistay: 'Full-Stack & Integration Contributor',
+    unistay: 'Group Leader & Full-Stack Developer',
     'salon-sanaru': 'Academic Team Contributor',
     'distributed-payment': 'Concurrency & Integration Contributor',
-    'cinnamon-bistro': 'DevOps, QA & Integration',
-    'cinnamon-pipeline': 'Group Leader & CI Pipeline Lead',
-    'facility-breach': 'Gameplay Interactions & Scene Integration',
+    'cinnamon-bistro': 'Group Leader | DevOps, QA & Integration',
+    'cinnamon-pipeline': 'Group Leader | Code Quality & Metrics | CI Pipeline Lead',
+    'facility-breach': 'Gameplay Interactions & Scene Integration Developer',
   }
 
   const cardDescriptions = {
@@ -51,10 +55,33 @@ export default function Projects({ onModalStateChange }) {
     'facility-breach': ['Unity 6 Engine', 'C#', 'NavMesh Integration', 'Physics Interactions'],
   }
 
+  // Filter projects by category
   const filteredProjects =
     selectedCategory === 'All'
       ? projectsData
       : projectsData.filter((p) => p.category === selectedCategory)
+
+  // 1. Featured projects in explicit order: unistay -> cinnamon-pipeline -> cinnamon-bistro
+  const featuredOrdered = FEATURED_ORDER
+    .map((id) => filteredProjects.find((p) => p.id === id))
+    .filter(Boolean)
+  const additionalFeatured = filteredProjects.filter(
+    (p) => p.featured && !FEATURED_ORDER.includes(p.id)
+  )
+  const allFeatured = [...featuredOrdered, ...additionalFeatured]
+
+  // 2. More projects in explicit order: salon-sanaru -> distributed-payment -> facility-breach
+  // Future projects default to this compact list unless explicitly featured
+  const moreOrdered = MORE_ORDER
+    .map((id) => filteredProjects.find((p) => p.id === id))
+    .filter(Boolean)
+  const additionalMore = filteredProjects.filter(
+    (p) => !p.featured && !MORE_ORDER.includes(p.id) && !FEATURED_ORDER.includes(p.id)
+  )
+  const allMore = [...moreOrdered, ...additionalMore]
+
+  // Only introduce Show More / Show Less when additional list exceeds 5 projects
+  const displayedMore = allMore.length > 5 && !showAllMore ? allMore.slice(0, 5) : allMore
 
   const handleOpenModal = (project, e) => {
     lastActiveElementRef.current = e?.currentTarget || document.activeElement
@@ -85,6 +112,8 @@ export default function Projects({ onModalStateChange }) {
         const focusableElements = modalRef.current.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         )
+        if (!focusableElements.length) return
+
         const firstElement = focusableElements[0]
         const lastElement = focusableElements[focusableElements.length - 1]
 
@@ -105,7 +134,6 @@ export default function Projects({ onModalStateChange }) {
     if (activeModalProject) {
       document.body.style.overflow = 'hidden'
       window.addEventListener('keydown', handleKeyDown)
-      // Focus the close button upon opening
       setTimeout(() => {
         modalCloseBtnRef.current?.focus()
       }, 50)
@@ -126,7 +154,7 @@ export default function Projects({ onModalStateChange }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-14 sm:mb-16">
+        <div className="text-center mb-12 sm:mb-14">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#67D4ED] tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-[#162338]/60 border border-[#2A3B52]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#67D4ED]" />
             <span>05 / Selected Implementations</span>
@@ -157,90 +185,217 @@ export default function Projects({ onModalStateChange }) {
           ))}
         </div>
 
-        {/* Card Grid: 3 columns on wide desktop, 2 on tablet, 1 on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-          {filteredProjects.map((project) => {
-            const techs = cardTechnologies[project.id] || project.technologies.slice(0, 4)
-            const remainingCount = project.technologies.length - techs.length
+        {/* FEATURED PROJECTS CARDS: 3 columns desktop, 2 tablet, 1 mobile */}
+        {allFeatured.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+            {allFeatured.map((project) => {
+              const techs = cardTechnologies[project.id] || project.technologies.slice(0, 4)
+              const remainingCount = project.technologies.length - techs.length
 
-            return (
-              <div
-                key={project.id}
-                className="glass-card rounded-2xl p-6 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#67D4ED]/40 hover:-translate-y-1 relative h-full"
-              >
-                {/* Card Top: Category Pill, Project Number, Title, Role, Description */}
-                <div className="flex-1 flex flex-col">
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[11px] uppercase tracking-wider font-bold text-[#67D4ED] bg-[#0B1220]/60 px-2.5 py-0.5 rounded-full border border-[#2A3B52]">
-                      {project.category}
-                    </span>
-                    <span className="text-xs font-mono font-bold text-[#94A3B8]">
-                      #{project.number}
-                    </span>
+              return (
+                <div
+                  key={project.id}
+                  className="glass-card rounded-2xl p-6 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#67D4ED]/40 hover:-translate-y-1 relative h-full"
+                >
+                  {/* Card Top: Category Pill, Project Number, Title, Role, Description */}
+                  <div className="flex-1 flex flex-col">
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-[11px] uppercase tracking-wider font-bold text-[#67D4ED] bg-[#0B1220]/60 px-2.5 py-0.5 rounded-full border border-[#2A3B52]">
+                        {project.category}
+                      </span>
+                      <span className="text-xs font-mono font-bold text-[#94A3B8]">
+                        #{project.number}
+                      </span>
+                    </div>
+
+                    {/* Project Title */}
+                    <h3 className="text-xl font-bold text-[#F1F5F9] group-hover:text-[#67D4ED] transition-colors leading-snug">
+                      {project.title}
+                    </h3>
+
+                    {/* Concise, fully visible card-only role label */}
+                    <p className="text-xs font-semibold text-[#67D4ED] mt-1.5 leading-snug">
+                      {cardRoleLabels[project.id] || project.role}
+                    </p>
+
+                    {/* Concise card description */}
+                    <p className="text-sm text-[#CBD5E1] mt-3 leading-relaxed">
+                      {cardDescriptions[project.id] || project.cardDescription}
+                    </p>
                   </div>
 
-                  {/* Project Title */}
-                  <h3 className="text-xl font-bold text-[#F1F5F9] group-hover:text-[#67D4ED] transition-colors leading-snug">
-                    {project.title}
-                  </h3>
+                  {/* Card Bottom: Technology Tags & Action Links */}
+                  <div className="pt-4 border-t border-[#2A3B52] mt-5 space-y-3.5">
+                    {/* Compact Technology Tags (up to 4 prioritized chips) */}
+                    <div className="flex flex-wrap gap-1.5 min-h-[44px] items-start">
+                      {techs.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-[#0B1220]/60 border border-[#2A3B52] text-[#CBD5E1]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {remainingCount > 0 && (
+                        <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-[#0B1220]/60 text-[#94A3B8]">
+                          +{remainingCount}
+                        </span>
+                      )}
+                    </div>
 
-                  {/* Concise, fully visible card-only role label */}
-                  <p className="text-xs font-semibold text-[#67D4ED] mt-1.5 leading-snug">
-                    {cardRoleLabels[project.id] || project.role}
-                  </p>
-
-                  {/* Concise card description */}
-                  <p className="text-sm text-[#CBD5E1] mt-3 leading-relaxed">
-                    {cardDescriptions[project.id] || project.cardDescription}
-                  </p>
-                </div>
-
-                {/* Card Bottom: Technology Tags & Action Links */}
-                <div className="pt-4 border-t border-[#2A3B52] mt-5 space-y-3.5">
-                  {/* Compact Technology Tags (up to 4 prioritized chips) */}
-                  <div className="flex flex-wrap gap-1.5 min-h-[48px] items-start">
-                    {techs.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-[#0B1220]/60 border border-[#2A3B52] text-[#CBD5E1]"
+                    {/* Action Links aligned horizontally */}
+                    <div className="flex items-center justify-between pt-1">
+                      <button
+                        type="button"
+                        onClick={(e) => handleOpenModal(project, e)}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#67D4ED] hover:text-[#A5ECF9] group/btn transition-colors cursor-pointer py-1"
                       >
-                        {tech}
-                      </span>
-                    ))}
-                    {remainingCount > 0 && (
-                      <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-[#0B1220]/60 text-[#94A3B8]">
-                        +{remainingCount}
-                      </span>
-                    )}
-                  </div>
+                        <span>View Details</span>
+                        <i className="bi bi-arrow-right group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
 
-                  {/* Action Links aligned horizontally across the grid row */}
-                  <div className="flex items-center justify-between pt-1">
-                    <button
-                      type="button"
-                      onClick={(e) => handleOpenModal(project, e)}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#67D4ED] hover:text-[#A5ECF9] group/btn transition-colors cursor-pointer py-1"
-                    >
-                      <span>View Details</span>
-                      <i className="bi bi-arrow-right group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
-
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#CBD5E1] hover:text-[#F1F5F9] px-3 py-1.5 rounded-lg bg-[#0B1220]/60 border border-[#2A3B52] hover:border-[#67D4ED]/40 transition-colors"
-                      aria-label={`GitHub repository for ${project.title}`}
-                    >
-                      <i className="bi bi-github project-github-icon text-base text-[#67D4ED]" aria-hidden="true" />
-                      <span>GitHub</span>
-                    </a>
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#CBD5E1] hover:text-[#F1F5F9] px-3 py-1.5 rounded-lg bg-[#0B1220]/60 border border-[#2A3B52] hover:border-[#67D4ED]/40 transition-colors"
+                        aria-label={`GitHub repository for ${project.title}`}
+                      >
+                        <i className="bi bi-github project-github-icon text-base text-[#67D4ED]" aria-hidden="true" />
+                        <span>GitHub</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
+              )
+            })}
+          </div>
+        )}
+
+        {/* MORE PROJECTS SECTION: Compact Horizontal Rows */}
+        {allMore.length > 0 && (
+          <div className={allFeatured.length > 0 ? 'mt-12 sm:mt-16' : ''}>
+            {/* Subtle "More Projects" Heading */}
+            <div className="flex items-center gap-2.5 mb-5 sm:mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#67D4ED]" />
+              <h3 className="text-xs font-mono uppercase tracking-widest text-[#67D4ED] font-semibold">
+                More Projects
+              </h3>
+              <div className="h-px bg-[#2A3B52] flex-1 ml-2" />
+            </div>
+
+            {/* Compact Rows Container */}
+            <div className="divide-y divide-[#2A3B52] border-y border-[#2A3B52] rounded-2xl glass-card overflow-hidden">
+              {displayedMore.map((project) => {
+                const rowTechs = (cardTechnologies[project.id] || project.technologies).slice(0, 3)
+                const rowRemaining = (cardTechnologies[project.id] || project.technologies).length - rowTechs.length
+
+                return (
+                  <div
+                    key={project.id}
+                    className="p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:gap-6 hover:bg-white/[0.015] transition-colors group"
+                  >
+                    {/* Left/Middle: Title & Role, One-line summary */}
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                        <h4
+                          onClick={(e) => handleOpenModal(project, e)}
+                          className="text-base sm:text-lg font-bold text-[#F1F5F9] group-hover:text-[#67D4ED] transition-colors cursor-pointer leading-snug"
+                        >
+                          {project.title}
+                        </h4>
+                        <span className="text-xs font-semibold text-[#67D4ED]">
+                          · {cardRoleLabels[project.id] || project.role}
+                        </span>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed max-w-3xl">
+                        {cardDescriptions[project.id] || project.cardDescription}
+                      </p>
+                    </div>
+
+                    {/* Right on Desktop / Stacked on Mobile: Tech Tags & Action Buttons */}
+                    <div className="flex flex-wrap items-center justify-between md:justify-end gap-3 sm:gap-4 shrink-0 pt-2 md:pt-0">
+                      {/* Up to 3 Technology Chips + N */}
+                      <div className="flex flex-wrap gap-1.5 items-center">
+                        {rowTechs.map((t) => (
+                          <span
+                            key={t}
+                            className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-[#0B1220]/60 border border-[#2A3B52] text-[#CBD5E1]"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                        {rowRemaining > 0 && (
+                          <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-[#0B1220]/60 text-[#94A3B8]">
+                            +{rowRemaining}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Action Links */}
+                      <div className="flex items-center gap-3">
+                        <button
+                          type="button"
+                          onClick={(e) => handleOpenModal(project, e)}
+                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#67D4ED] hover:text-[#A5ECF9] group/btn transition-colors cursor-pointer py-1"
+                        >
+                          <span>View Details</span>
+                          <i className="bi bi-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform" />
+                        </button>
+
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#CBD5E1] hover:text-[#F1F5F9] px-3 py-1.5 rounded-lg bg-[#0B1220]/60 border border-[#2A3B52] hover:border-[#67D4ED]/40 transition-colors"
+                          aria-label={`GitHub repository for ${project.title}`}
+                        >
+                          <i className="bi bi-github project-github-icon text-sm text-[#67D4ED]" aria-hidden="true" />
+                          <span>GitHub</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Show More / Show Less (Only rendered if more projects list exceeds 5) */}
+            {allMore.length > 5 && (
+              <div className="mt-5 text-center">
+                <button
+                  type="button"
+                  onClick={() => setShowAllMore(!showAllMore)}
+                  className="btn-glass-action inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer"
+                >
+                  <span>{showAllMore ? 'Show Less' : `Show More (${allMore.length - 5} more)`}</span>
+                  <i className={`bi bi-chevron-${showAllMore ? 'up' : 'down'} text-xs`} />
+                </button>
               </div>
-            )
-          })}
-        </div>
+            )}
+          </div>
+        )}
+
+        {/* Empty State: Shown when a category filter has no matching projects */}
+        {allFeatured.length === 0 && allMore.length === 0 && (
+          <div className="py-16 text-center glass-card rounded-2xl p-8 border border-[#2A3B52] max-w-md mx-auto">
+            <div className="w-12 h-12 rounded-xl bg-[#162338] text-[#67D4ED] border border-[#2A3B52] flex items-center justify-center text-2xl mx-auto mb-3 shadow-xs">
+              <i className="bi bi-folder2-open" aria-hidden="true" />
+            </div>
+            <h4 className="text-base font-bold text-[#F1F5F9]">No projects in this category</h4>
+            <p className="text-xs text-[#94A3B8] mt-1.5 mb-4 leading-relaxed">
+              Try selecting a different filter above or return to view all projects.
+            </p>
+            <button
+              type="button"
+              onClick={() => setSelectedCategory('All')}
+              className="btn-glass-action inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-full cursor-pointer"
+            >
+              <span>View All Projects</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* PROJECT DETAILS POPUP: Wide Landscape 2-Column Layout on Desktop */}
